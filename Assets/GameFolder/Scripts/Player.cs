@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public bool isCoolTimeA=false;
     public bool isCoolTimeB=false;
     public bool isCoolTimeDodge = false;
+    public bool isStunned=false;
     private float _coolTimeA = 0;
     public float coolMaxA;
     public float coolTimeA
@@ -91,6 +92,7 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        if(isStunned)return;
         Interact();
         Move();
         if(!isOnSkill)//스킬애니메이션 중 다른 업데이트 실행 안되도록 분리
@@ -100,7 +102,6 @@ public class Player : MonoBehaviour
             Skill_A();
             Skill_B();
         }
-
     }
     public void Move()
     {
@@ -121,8 +122,28 @@ public class Player : MonoBehaviour
             if(colliderSaver!=null) colliderSaver.InteractFinished();
         }
 
-        
- 
+
+    }
+            
+    public void Stunned(Vector3 enemyPos,float time,  float distance)
+    {
+        StartCoroutine(Stun(enemyPos,time,distance));
+    }
+    IEnumerator Stun(Vector3 enemyPos,float time,float distance)
+    {
+        anim.Play("Stunned");
+        float tic = time/50f;
+        float dist = distance/50f;
+        isStunned=true;
+        Vector3 dirVec = (enemyPos-transform.position).normalized;
+        for(int i=0; i<50; ++i)
+        {
+            yield return new WaitForSeconds(tic);
+            characterController.Move(-dirVec*dist);
+        }
+        isStunned=false;
+        anim.Play("Standard Idle");
+
     }
     public void Attack()
     {

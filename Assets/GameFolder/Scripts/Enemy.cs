@@ -29,7 +29,15 @@ public class Enemy : MonoBehaviour , IDamagable
    }
    public virtual void Dead()
    {
-       BattleStageManager.instance.enemyCount -=1;
+       if(gameObject.tag!="Boss")
+       {
+            BattleStageManager.instance.enemyCount -=1;
+       }
+       else
+       {
+
+       }
+      
    }
    
 }
