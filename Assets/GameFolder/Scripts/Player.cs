@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
+    public float gravity = -9.8f;
     public event UnityAction OnCoolTime;
     public PlayerLight playerLight;
     public float damage = 5f;
@@ -136,10 +137,11 @@ public class Player : MonoBehaviour
         float dist = distance/50f;
         isStunned=true;
         Vector3 dirVec = (enemyPos-transform.position).normalized;
+        Vector3 fixedDir = new Vector3(dirVec.x,0,dirVec.z);
         for(int i=0; i<50; ++i)
         {
             yield return new WaitForSeconds(tic);
-            characterController.Move(-dirVec*dist);
+            characterController.Move(-fixedDir*dist);
         }
         isStunned=false;
         anim.Play("Standard Idle");
@@ -261,7 +263,7 @@ public class Player : MonoBehaviour
     }
     public void SkillEnded()
     {
-        isOnSkill=false;
+        //isOnSkill=false;
     }
     public IEnumerator MoveOnAnim(float moveSpeed)
     {
@@ -277,10 +279,10 @@ public class Player : MonoBehaviour
 //        Debug.Log("Damage");
         Outline outline = GetComponent<Outline>();
         Color prevColor = outline.OutlineColor;
-        outline.OutlineWidth = 1f;
+        outline.OutlineWidth = 3f;
         outline.OutlineColor = Color.red;
         //transform.Translate(Vector3.back*3f);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         outline.OutlineWidth = 0.1f;
         outline.OutlineColor = prevColor;
     }

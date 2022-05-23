@@ -23,7 +23,8 @@ public class BattleStageManager : MonoBehaviour
         {
             _enemyCount = value;
             OnEnemyDead?.Invoke();
-            Debug.Log(_enemyCount);
+            //Debug.Log(_enemyCount);
+            
         }
     }
     
