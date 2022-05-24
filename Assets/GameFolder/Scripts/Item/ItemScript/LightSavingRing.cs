@@ -15,7 +15,10 @@ public class LightSavingRing : Equipable , Iinteractable
     {
 
     }
-
+    public override void UnEquip()
+    {
+        
+    }
     
     public void Interact()
     {

@@ -31,6 +31,7 @@ public class InventoryManager : MonoBehaviour
     {
         InventoryListener();
     }
+
     public void InventoryListener()
     {
         if(!Input.GetButtonDown("InventoryInteract")) return;
@@ -106,6 +107,7 @@ public class InventoryManager : MonoBehaviour
             return false;
         }
         equipItems.Add(item);
+        equipItems[equipItems.Count-1].prefab.GetComponent<Equipable>().Equip();
         ui.UpdateUI();
         equipUI.UpdateUI();
         return true;
@@ -113,6 +115,7 @@ public class InventoryManager : MonoBehaviour
     }
     public void EquipRemove(ItemData item)
     {
+        item.prefab.GetComponent<Equipable>().UnEquip();
         equipItems.Remove(item);
         ui.UpdateUI();
         equipUI.UpdateUI();

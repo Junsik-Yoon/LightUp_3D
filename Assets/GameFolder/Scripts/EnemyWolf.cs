@@ -72,7 +72,7 @@ public class EnemyWolf : Enemy
    }
     public override void Dead()
     {
-        base.Dead();
+        if(SceneManager.GetActiveScene().name!="Tutorial") base.Dead();
         GameObject.Find("PlayerSpotLight").GetComponent<PlayerLight>().LightUp(10f);
         GetComponent<SphereCollider>().enabled=false;
         eState = eEnemyState.DIE;

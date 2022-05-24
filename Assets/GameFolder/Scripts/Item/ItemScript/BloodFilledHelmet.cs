@@ -15,7 +15,10 @@ public class BloodFilledHelmet : Equipable , Iinteractable
     {
 
     }
-
+    public override void UnEquip()
+    {
+        
+    }
     
     public void Interact()
     {

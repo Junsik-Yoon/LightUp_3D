@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Portal : MonoBehaviour
     public Image timeBarFill;
     public GameObject shockWave;
     private string destination;
+
     private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.tag == "Player")
@@ -25,6 +27,15 @@ public class Portal : MonoBehaviour
         if(portalActive>=3f)
         {
             portalActive = -1f;
+            if(SceneManager.GetActiveScene().name=="Stage")
+            {
+                Player player = other.gameObject?.GetComponent<Player>();
+                Light light = (player.playerLight.gameObject)?.GetComponent<Light>();
+                player.playerLightLeft = light.spotAngle;
+                BattleStageManager.instance.SetNeededPlayerData(player);
+                BattleStageManager.dungeonStatus+=1;
+            }
+
             StartCoroutine(ScnChange());
         }
     }

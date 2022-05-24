@@ -15,8 +15,7 @@ public class EnterGame : MonoBehaviour, Iinteractable
         else if (enterCounter == 2)
         {
             enterCounter = 0;
-            //사냥하러 -> 임시로 튜토리얼로 해놓음
-            LoadingHelper.LoadScene("Tutorial");
+            LoadingHelper.LoadScene("Stage");
         }
     }
     public void InteractFinished()

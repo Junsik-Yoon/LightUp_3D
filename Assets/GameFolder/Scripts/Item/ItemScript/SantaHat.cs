@@ -15,6 +15,10 @@ public class SantaHat : Equipable , Iinteractable
     {
 
     }
+    public override void UnEquip()
+    {
+        
+    }
 
     
     public void Interact()

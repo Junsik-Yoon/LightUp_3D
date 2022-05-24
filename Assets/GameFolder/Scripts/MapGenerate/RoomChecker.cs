@@ -61,7 +61,10 @@ public class RoomChecker : MonoBehaviour
             {
                 //Vector3 curPos = new Vector3(transform.position.x,gameObject.transform.position.y+0.1f,transform.position.z);
                 GameObject obj = Instantiate(shopGuyInBattle,transform.position,Quaternion.Euler(0f,180f,0f));
+                obj?.GetComponent<ShopInBattle>().GenerateItems();
+                
                 roomLight.color=Color.green;
+
             }break;
             case "Item":
             {
@@ -87,7 +90,12 @@ public class RoomChecker : MonoBehaviour
     {
         Vector3 curPos = new Vector3(transform.position.x,transform.position.y+0.1f,transform.position.z);
         GameObject obj = Instantiate(prefPortal,curPos,Quaternion.identity);
-        obj.GetComponent<Portal>().SetDestination("Stage"); //->보스방으로 지정하기
+        
+        obj.GetComponent<Portal>().SetDestination("Stage"); 
+        if(BattleStageManager.dungeonStatus==2)
+        {
+             obj.GetComponent<Portal>().SetDestination("EnemyBossBattle");//->보스방으로 지정하기
+        }
     }
     public void SetDoor()
     {

@@ -15,7 +15,10 @@ public class ThrowingStarGloves : Equipable , Iinteractable
     {
 
     }
-
+    public override void UnEquip()
+    {
+        
+    }
     
     public void Interact()
     {

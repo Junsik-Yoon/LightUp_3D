@@ -15,6 +15,7 @@ MonoBehaviour:
   name: "\uC57C\uAC04\uD22C\uC2DC\uACBD"
   icon: {fileID: 21300000, guid: 7522c278e514e6b4c98108ad51a36605, type: 3}
   prefab: {fileID: 3866583881286213791, guid: f47306580bcde7640b82e27c3afb6b59, type: 3}
-  description: "\uC5B4\uB460\uC774 \uBB34\uC12D\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4"
+  description: "\uC5B4\uB460\uC774 \uBB34\uC12D\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4 \uD558\uC9C0\uB9CC
+    \uBE5B\uC740 \uBB34\uC11C\uC6CC\uC9D1\uB2C8\uB2E4"
   equipable: {fileID: -5011245171883255121, guid: f47306580bcde7640b82e27c3afb6b59,
     type: 3}

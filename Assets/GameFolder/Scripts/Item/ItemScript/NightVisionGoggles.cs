@@ -5,7 +5,6 @@ using UnityEngine;
 public class NightVisionGoggles : Equipable , Iinteractable
 {
     public EquipItemData itemData;
-
     private void Awake()
     {
         description = itemData.description;
@@ -13,10 +12,13 @@ public class NightVisionGoggles : Equipable , Iinteractable
     }
     public override void Equip()
     {
-
+        (Camera.main.GetComponent<BeautifyEffect.Beautify>()).nightVision = true;  
+    }
+    public override void UnEquip()
+    {
+        (Camera.main.GetComponent<BeautifyEffect.Beautify>()).nightVision = false;
     }
 
-    
     public void Interact()
     {
 

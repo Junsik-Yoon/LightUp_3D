@@ -15,7 +15,10 @@ public class BowTie : Equipable , Iinteractable
     {
 
     }
-
+    public override void UnEquip()
+    {
+        
+    }
     
     public void Interact()
     {

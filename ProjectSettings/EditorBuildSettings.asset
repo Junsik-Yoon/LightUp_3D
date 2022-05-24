@@ -6,24 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/GameFolder/Scenes/Tutorial.unity
+    path: Assets/GameFolder/ScenesBuild/Tutorial.unity
     guid: 0b6529e4c142eee42ab7900d96adc984
   - enabled: 1
-    path: Assets/GameFolder/Scenes/VillageScene.unity
+    path: Assets/GameFolder/ScenesBuild/VillageScene.unity
     guid: 38033265a620a7645bb1a27a468f29cc
   - enabled: 1
-    path: Assets/GameFolder/Scenes/LoadingScene.unity
+    path: Assets/GameFolder/ScenesBuild/LoadingScene.unity
     guid: 5ff6a5a4551e3dc4c80dc4377f918eee
   - enabled: 1
-    path: Assets/GameFolder/Scenes/OpeningScene.unity
+    path: Assets/GameFolder/ScenesBuild/OpeningScene.unity
     guid: 8db45c807d48dd34197abd99b43740c3
   - enabled: 1
-    path: Assets/GameFolder/Scenes/StartScene.unity
+    path: Assets/GameFolder/ScenesBuild/StartScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/GameFolder/Scenes/MainQuestScene.unity
+    path: Assets/GameFolder/ScenesBuild/MainQuestScene.unity
     guid: 0bda7eedc1081384490fbb7fabc09cb3
   - enabled: 1
-    path: Assets/GameFolder/Scenes/Stage.unity
+    path: Assets/GameFolder/ScenesBuild/Stage.unity
     guid: b760447ca54940b409aa3b6cbd96cfaf
+  - enabled: 1
+    path: Assets/GameFolder/ScenesBuild/EnemyBossBattle.unity
+    guid: e75ec10977cfa044a847dc002597053e
+  - enabled: 1
+    path: Assets/GameFolder/ScenesBuild/EnemyVillageBoss.unity
+    guid: 18d38257c4abc9b498c1a955f46b0561
   m_configObjects: {}
