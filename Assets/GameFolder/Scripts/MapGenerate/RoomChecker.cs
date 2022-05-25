@@ -29,6 +29,7 @@ public class RoomChecker : MonoBehaviour
     [Header("prefab")]
     public GameObject prefPortal;
     public GameObject shopGuyInBattle;
+    public GameObject pileOfSkeletons;
     [Header("Light")]
     public Light roomLight;
     //public GameObject roomCheck;
@@ -69,7 +70,22 @@ public class RoomChecker : MonoBehaviour
             case "Item":
             {
                 //임시로 상인 해놓음
-                GameObject obj = Instantiate(shopGuyInBattle,transform.position,Quaternion.identity);
+                int randomEvent = Random.Range(1,2);
+                switch(randomEvent)
+                {
+                    case 1:
+                    {
+                        Instantiate(pileOfSkeletons,transform.position,Quaternion.identity);
+                    }break;
+                    case 2:
+                    {
+                        
+                    }break;
+                    case 3:
+                    {
+
+                    }break;
+                }
                 roomLight.color=Color.blue;
             }break;
             case "Hidden":

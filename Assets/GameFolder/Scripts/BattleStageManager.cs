@@ -7,11 +7,20 @@ using System.IO;
 public class BattleStageManager : MonoBehaviour
 {
     public static int dungeonStatus = 0; //보스클리어하거나 죽으면 다시 0으로 돌리기
+    public static int enemyKilled = 0;
+    public float playTime;
     public event UnityAction OnEnemyDead;
     public static BattleStageManager instance {get;private set;}
     private void Awake()
     {
         instance =this;
+    }
+    private void Start()
+    {
+        if(dungeonStatus == 0)
+        {
+            playTime = Time.time;
+        }
     }
     private int _enemyCount;
     public int enemyCount
@@ -37,6 +46,7 @@ public class BattleStageManager : MonoBehaviour
         public float hitRadius;
         public List<ItemData> equipItems = new List<ItemData>();
         public List<ItemData> inventoryItems = new List<ItemData>();
+        public float playTime;
     }
     public void SetNeededPlayerData(Player player)
     {
@@ -48,6 +58,9 @@ public class BattleStageManager : MonoBehaviour
         playerData.inventoryItems = InventoryManager.instance.inventoryItems;
         playerData.moveSpeed = player.moveSpeed;
         playerData.hitRadius = player.hitRadius;
+        
+        //던전 1스테이지 진입시간
+        playerData.playTime = playTime;
         
         SavePlayerData(playerData);
     }
@@ -74,6 +87,7 @@ public class BattleStageManager : MonoBehaviour
         InventoryManager.instance.inventoryItems = playerData.inventoryItems; 
         player.moveSpeed = playerData.moveSpeed; 
         player.hitRadius = playerData.hitRadius; 
+        playTime = playerData.playTime;
     }
     
 }

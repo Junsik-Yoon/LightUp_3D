@@ -77,6 +77,7 @@ public class Guard : Enemy
     public override void Dead()
     {
         BossBattleManager.instance.enemyCount-=1;
+        BattleStageManager.enemyKilled+=1;
         //base.Dead();
         GameObject.Find("PlayerSpotLight").GetComponent<PlayerLight>().LightUp(5f);
         GetComponent<CapsuleCollider>().enabled=false;

@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour , IDamagable
        if(gameObject.tag!="Boss")
        {
             BattleStageManager.instance.enemyCount -=1;
+            BattleStageManager.enemyKilled+=1;
        }
        else
        {

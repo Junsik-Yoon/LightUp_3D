@@ -307,7 +307,7 @@ public class BossMove : Enemy
         CancelInvoke();
         //Destroy(gameObject,2f);
         
-        
+        BossBattleManager.instance.StartCoroutine(BossBattleManager.instance.ShowBattleResult());
     }
     IEnumerator Hurt(float animTime ,float knockBackRange,eEnemyState prevState)
     {

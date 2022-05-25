@@ -16,5 +16,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 76a46058402757b43b969133decd3b2c, type: 3}
   prefab: {fileID: 3866583881286213791, guid: 45b60843c279f6a4bb0a5ad6d940189a, type: 3}
   description: "\uBD84\uC2E0\uC220\uC744 \uC4F8 \uC218 \uC788\uC2B5\uB2C8\uB2E4"
+  itemPrice: 50
   equipable: {fileID: -1655348015949542227, guid: 45b60843c279f6a4bb0a5ad6d940189a,
     type: 3}

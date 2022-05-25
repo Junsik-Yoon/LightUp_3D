@@ -10,6 +10,7 @@ public abstract class ItemData : ScriptableObject
     public GameObject prefab = null;
     [TextArea]
     public string description;
+    public int itemPrice;
     public abstract void Use();
 
     public void Remove()

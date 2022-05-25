@@ -176,7 +176,7 @@ public class Player : MonoBehaviour
     }
     public void Skill_A()
     {
-        if(Input.GetButtonDown("Command2")) battleStyle.Skill_A();
+        if(Input.GetButtonDown("Command2")) {battleStyle.Skill_A();Debug.Log(Time.time);}
     }
     public void Skill_B()
     {

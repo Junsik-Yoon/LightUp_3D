@@ -362,6 +362,8 @@ MonoBehaviour:
     type: 3}
   shopGuyInBattle: {fileID: 6032006774398282833, guid: fd429a439b8fa4240b3642450e745653,
     type: 3}
+  pileOfSkeletons: {fileID: 3270384993945930561, guid: 9abffe0b0f456fa4483aaaa2a31dc29f,
+    type: 3}
   roomLight: {fileID: 2803108967222499742}
 --- !u!65 &6890274741983468272
 BoxCollider:

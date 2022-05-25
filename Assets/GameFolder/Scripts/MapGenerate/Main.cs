@@ -142,7 +142,7 @@ public class Main : MonoBehaviour
         //보스방 배치
         //상점 , 아이템인터랙트 방 랜덤으로 배치
         //스타트,엔드,상점 모든 방 포함해서 룸 하나 골라서 사방을 레이캐스트로 쏴서 방이 없으면 시크릿 룸 하나 생성
-        Debug.Log("BattleRoomsCount: "+rooms.Count);
+//        Debug.Log("BattleRoomsCount: "+rooms.Count);
         for(int i=0; i<rooms.Count; ++i)
         {
             rooms[i].GetComponent<RoomChecker>().CheckRooms(rooms); 
@@ -338,7 +338,7 @@ public class Main : MonoBehaviour
             }
 
             knots.Add(end);
-            Debug.Log(end.gridX+" "+end.gridY);
+//            Debug.Log(end.gridX+" "+end.gridY);
 
             start.ChangeStart = true;
             end.ChangeEnd = true;
@@ -504,7 +504,7 @@ public class Main : MonoBehaviour
                 paths[i][j].ChangeColor = Color.black;
             }
         }
-        Debug.Log(paths.Count);
+//        Debug.Log(paths.Count);
         int maxNum = 0;
         int maxIndex=0;
         for(int i=0; i<knots.Count; ++i)

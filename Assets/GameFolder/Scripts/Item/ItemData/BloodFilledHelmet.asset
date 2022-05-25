@@ -17,5 +17,6 @@ MonoBehaviour:
   prefab: {fileID: 3866583881286213791, guid: 1968faf3f86843f498058ca69d3c7f6e, type: 3}
   description: "\uBE5B\uC744 \uB354 \uBE68\uB9AC \uC18C\uBAA8\uD558\uC9C0\uB9CC \uBB3C\uB9AC\uB370\uBBF8\uC9C0\uAC00
     \uC99D\uAC00\uD569\uB2C8\uB2E4"
+  itemPrice: 50
   equipable: {fileID: 6051198634270665903, guid: 1968faf3f86843f498058ca69d3c7f6e,
     type: 3}

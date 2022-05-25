@@ -78,6 +78,11 @@ public class EnemyWolf : Enemy
         eState = eEnemyState.DIE;
         anim.SetTrigger("onDead");
         Destroy(gameObject,2f);
+        
+        MoneyManager.instance.MoneyDrop(transform,20);
+
+
+        //튜토리얼용
         if(SceneManager.GetActiveScene().name == "Tutorial")
         {
             GameObject.Find("RegenSpot").GetComponent<GenerateMonster>().GenMonster();

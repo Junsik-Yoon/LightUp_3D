@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8617677783924308068}
   - component: {fileID: 8617677783924308075}
+  - component: {fileID: 1421154070}
+  - component: {fileID: 1421154072}
   m_Layer: 0
   m_Name: BattleStageManager
   m_TagString: Untagged
@@ -43,3 +45,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c344d366937c04b8ea3ff5dfc35c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1421154070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8617677783924308069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d1c13b29b1cab4f88cf1ffb98db982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyText: {fileID: 0}
+  moneyUI: {fileID: 0}
+  moneyDrop: {fileID: 6296033389265227534, guid: 433e8a9e986dc324baaeea7c92bc2138,
+    type: 3}
+--- !u!114 &1421154072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8617677783924308069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f056d50b0b544954aac2e7fe1785882f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryItems: []
+  equipItems: []
+  ui: {fileID: 0}
+  equipUI: {fileID: 0}
+  inventoryOnOff: {fileID: 0}
+  fieldDescription: {fileID: 0}
+  invenDescription: {fileID: 0}
+  invenInteract: {fileID: 0}
+  equipDescription: {fileID: 0}
+  equipInteract: {fileID: 0}
+  inventoryMaxSize: 12
+  equipMaxSize: 4
+  isInvenReacting: 0
+  currentlySelectedItem: {fileID: 0}

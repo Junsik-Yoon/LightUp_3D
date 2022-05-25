@@ -1,4 +1,5 @@
 ﻿
+using System.Data.SqlTypes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance {get;private set;}
+    public Text moneyText;
     public List<ItemData> inventoryItems ;
     public List<ItemData> equipItems;
     public InventoryUI ui;
@@ -17,6 +19,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject invenInteract;
     public GameObject equipDescription;
     public GameObject equipInteract;
+    public GameObject outOfMoneyText;
     Collider savedCollider;
     public int inventoryMaxSize = 12;
     public int equipMaxSize = 4;
@@ -26,6 +29,11 @@ public class InventoryManager : MonoBehaviour
     {
         instance = this;
         inventoryItems = new List<ItemData>();
+    }
+    private void Start()
+    {
+        moneyText.text = MoneyManager.instance.money.ToString();
+        MoneyManager.instance.OnMoneyStatusChanged+=MoneyChanged;
     }
     private void Update()
     {
@@ -39,6 +47,10 @@ public class InventoryManager : MonoBehaviour
         inventoryOnOff.gameObject.SetActive(!inventoryOnOff.gameObject.activeSelf);
         ui.UpdateUI();
         equipUI.UpdateUI();
+    }
+    public void MoneyChanged()
+    {
+        moneyText.text = MoneyManager.instance.money.ToString();
     }
 
     public void FieldDescriptionToggle(bool status) //status가 false일시에 쓰도록
@@ -77,6 +89,16 @@ public class InventoryManager : MonoBehaviour
             fieldDescription.transform.position = calculatedPos;
         }
 
+    }
+    public void OutOfMoney()
+    {
+        StartCoroutine(MoneyNeeded());
+    }
+    IEnumerator MoneyNeeded()
+    {
+        outOfMoneyText.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        outOfMoneyText.SetActive(false);
     }
     public void SetInformation(Collider coll)
     {

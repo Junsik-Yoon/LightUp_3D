@@ -1,31 +1,16 @@
 {
     "damage": 5.0,
-    "playerLightLeft": 160.51808166503907,
+    "playerLightLeft": 165.00088500976563,
     "moveSpeed": 5.0,
     "hitRadius": 1.0,
-    "equipItems": [
-        {
-            "instanceID": 41354
-        }
-    ],
+    "equipItems": [],
     "inventoryItems": [
         {
-            "instanceID": 41348
-        },
-        {
-            "instanceID": 41352
+            "instanceID": 41354
         },
         {
             "instanceID": 41356
-        },
-        {
-            "instanceID": 41358
-        },
-        {
-            "instanceID": 41346
-        },
-        {
-            "instanceID": 41350
         }
-    ]
+    ],
+    "playTime": 0.0
 }
