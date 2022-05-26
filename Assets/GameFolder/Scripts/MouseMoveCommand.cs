@@ -30,8 +30,11 @@ public class MouseMoveCommand : MoveCommand
                 Vector3 direction = hit.transform.position - Camera.main.transform.position;
                 Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
                 player.navMeshAgent.SetDestination(hit.point);
-                Vector3 look  = hit.point - player.gameObject.transform.position;
-                player.gameObject.transform.LookAt(look);
+
+                Vector3 lookrotation = player.navMeshAgent.steeringTarget-player.transform.position;
+                player.transform.rotation = Quaternion.Slerp(player.transform.rotation,Quaternion.LookRotation(lookrotation), 5*Time.deltaTime); 
+                //Vector3 look  = hit.point - player.gameObject.transform.position;
+                //player.gameObject.transform.LookAt(look);
             }
             GameObject.Instantiate(GameManager.instance.mouseEffect,new UnityEngine.Vector3(hit.point.x,hit.point.y+0.1f,hit.point.z),Quaternion.identity);
         }
@@ -43,7 +46,7 @@ public class MouseMoveCommand : MoveCommand
         {
             
             CheckEvent();
-            player.anim.SetFloat("MoveSpeed",0.6f);
+            player.anim.SetFloat("MoveSpeed",player.navMeshAgent.velocity.magnitude);
         }
         
         if(Input.GetMouseButtonUp(0))

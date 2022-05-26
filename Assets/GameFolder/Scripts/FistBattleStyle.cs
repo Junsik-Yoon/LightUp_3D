@@ -19,6 +19,7 @@ public class FistBattleStyle : BattleStyle
             colls = Physics.OverlapSphere(player.hitCollider.position,player.hitRadius,LayerMask.GetMask("Enemy"));
             ++player.comboCounter;
             player.anim.SetTrigger("onAttack");
+            player.StartCoroutine(player.MoveWhileAttack((int)player.comboCounter));
             player.StartCoroutine(player.ComboReset());
             skillIndex=0;
             
@@ -53,7 +54,7 @@ public class FistBattleStyle : BattleStyle
     {
         if(!player.isCoolTimeDodge)
         {
-            player.anim.SetBool("isDodge",true);
+            player.anim.SetTrigger("OnDodge");
             player.isCoolTimeDodge=true;
             player.StartCoroutine(player.CoolTimeResetDodge(0.5f));  
             player.isInvincible = true; 
@@ -89,8 +90,11 @@ public class FistBattleStyle : BattleStyle
                     {
                         enemy.Hit(player.damage * damageMultiplier,knockBackRange);
                         Debug.Log(player.damage * damageMultiplier);
+                        
                     } 
+
                 }
+
             }
             else if(skillIndex ==2)
             {
@@ -104,6 +108,17 @@ public class FistBattleStyle : BattleStyle
                     } 
                 }      
             }
-        }      
+        } 
+        //else//스킬이펙트용
+        {
+            if(skillIndex ==1)
+            {
+                Vector3 effectPos = new Vector3(player.hitCollider.transform.position.x,player.hitCollider.transform.position.y-1.4f,player.hitCollider.transform.position.z);
+                GameObject obj = GameObject.Instantiate(player.smashEffect,effectPos,Quaternion.identity);
+                //Debug.Log(obj);
+                GameObject.Destroy(obj,1.5f);
+            }
+
+        }     
     } 
 }

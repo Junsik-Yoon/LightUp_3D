@@ -50,7 +50,7 @@ public class LoadingHelper : MonoBehaviour
             //Debug.Log(timer);
             timer+=Time.unscaledDeltaTime;
             loadImage.color = new Color(0f,0f,0f,1f - (timer/3f));
-            Debug.Log(timer);
+//            Debug.Log(timer);
             if(timer>=3f)
             {
                 timer = 0f;

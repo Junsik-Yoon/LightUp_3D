@@ -91,7 +91,7 @@ public class EnemyGenerator : MonoBehaviour
             }
             else if(roomChecker.isItemRoom)
             {
-                roomChecker.roomLight.gameObject.SetActive(true);
+                //roomChecker.roomLight.gameObject.SetActive(true);
             }
             // else if(roomChecker.isBossRoom)
             // {
@@ -104,7 +104,10 @@ public class EnemyGenerator : MonoBehaviour
             return; //if문 안쪽 방들은 몬스터 리젠 x
         }
 
-        if(roomChecker.isBossRoom) {++stageLevel;ResetLevelData();}
+        if(roomChecker.isBossRoom)
+        {
+            ++stageLevel;ResetLevelData();
+        }
         BattleStageManager.instance.enemyCount = (int)genQuantity;
         BattleStageManager.instance.OnEnemyDead+=DeadCount;
         StartCoroutine(GenMonsters());

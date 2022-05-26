@@ -87,7 +87,8 @@ public class Player : MonoBehaviour
     private MoveCommand moveCommand;
     private BattleStyle battleStyle;
     public bool isOnSkill=false;
-
+    
+    public GameObject smashEffect;
     string currentSceneName = "";
     Iinteractable colliderSaver;
     IEnumerator temp;
@@ -95,19 +96,19 @@ public class Player : MonoBehaviour
     {
         currentSceneName = SceneManager.GetActiveScene().name;
         anim = GetComponent<Animator>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
+       // navMeshAgent = GetComponent<NavMeshAgent>();
         characterController = GetComponent<CharacterController>();
         battleStyle = new FistBattleStyle(this);
-        if( currentSceneName == "VillageScene")
-        {
-            anim.applyRootMotion = false;
-            characterController.enabled = false;
-            moveCommand = new MouseMoveCommand(this);
-        }
-        else
-        {
+        // if( currentSceneName == "VillageScene")
+        // {
+        //     anim.applyRootMotion = false;
+        //     characterController.enabled = false;
+        //     moveCommand = new MouseMoveCommand(this);
+        // }
+        // else
+        // {
             moveCommand = new NormalMoveCommand(this);//맨마지막
-        }
+       // }
     }
     private void Start()
     {
@@ -119,7 +120,8 @@ public class Player : MonoBehaviour
     private void Update()
     {
         if(isStunned)return;
-        if(currentSceneName!= "VillageScene")Interact();
+        //if(currentSceneName!= "VillageScene")
+        Interact();
         Move();
         if(!isOnSkill)//스킬애니메이션 중 다른 업데이트 실행 안되도록 분리
         {   
@@ -139,9 +141,24 @@ public class Player : MonoBehaviour
         Collider[] colls = Physics.OverlapSphere(hitCollider.position,hitRadius,LayerMask.GetMask("Event"));
         if(colls.Length>0)
         {
-            colliderSaver = colls[0].GetComponent<Iinteractable>();
-            InventoryManager.instance.SetInformation(colls[0]);
-            colliderSaver.Interact();
+            if(colls[0].gameObject.tag!="NPC")
+            {
+                colliderSaver = colls[0].GetComponent<Iinteractable>();
+                InventoryManager.instance.SetInformation(colls[0]);
+                colliderSaver.Interact();
+            }
+            else
+            {
+                if(Input.GetButtonDown("Interact"))
+                {
+                    colliderSaver = colls[0].GetComponent<Iinteractable>();
+                    colliderSaver.Interact();    
+                    GameManager.instance.isEventChecked = true;
+                    GameManager.instance.StartCoroutine(GameManager.instance.WaitForNextEvent());
+                }           
+            }
+
+
         }
         else
         {
@@ -172,7 +189,22 @@ public class Player : MonoBehaviour
     }
     public void Attack()
     {
-        if(Input.GetButtonDown("Command1")) battleStyle.Attack();
+        if(Input.GetButtonDown("Command1")) 
+        {
+            battleStyle.Attack();            
+        }
+    }
+    public IEnumerator MoveWhileAttack(int combo)
+    {
+        float moveDistance = 0.03f;
+        if(combo==4) moveDistance *=5;
+        
+        for(int i=0; i<10; ++i)
+        {
+            yield return new WaitForEndOfFrame();
+            characterController.Move(transform.forward*moveDistance);
+        }
+
     }
     public void Skill_A()
     {
@@ -272,31 +304,35 @@ public class Player : MonoBehaviour
         Outline outline = GetComponent<Outline>();
         outline.OutlineWidth = 5f;
         isInvincible=true;
-        temp = MoveOnAnim(moveSpeed);
-        StartCoroutine(temp);
+        StartCoroutine(MoveOnAnim(moveSpeed));
     }
-    public void AnimStop()
+    public IEnumerator MoveOnAnim(float moveSpeed)
     {
+        for(int i=0;i<15;++i)
+        {    
+            yield return new WaitForEndOfFrame();
+            characterController.Move(transform.forward*moveSpeed);
+        }
         isInvincible=false;
-        StopCoroutine(temp);
         Outline outline = GetComponent<Outline>();
-        outline.OutlineWidth = 0.1f;
-        anim.SetBool("isDodge",false);
+        outline.OutlineWidth = 0f;
+        
         SkillEnded();
     }
+    // public void AnimStop()
+    // {
+    //     isInvincible=false;
+    //     StopCoroutine(temp);
+    //     Outline outline = GetComponent<Outline>();
+    //     outline.OutlineWidth = 0.1f;
+    //     anim.SetBool("isDodge",false);
+    //     SkillEnded();
+    // }
     public void SkillEnded()
     {
         isOnSkill=false;
     }
-    public IEnumerator MoveOnAnim(float moveSpeed)
-    {
-        while(true)
-        {
-            //transform.Translate(Vector3.forward*moveSpeed);
-            characterController.Move(transform.forward*moveSpeed);
-            yield return new WaitForEndOfFrame();
-        }
-    }
+
     IEnumerator DamageEffect()
     {
 //        Debug.Log("Damage");

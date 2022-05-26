@@ -33,7 +33,7 @@ public class ShopInBattle : MonoBehaviour, Iinteractable
             GameObject obj = Instantiate(randomItems[nums[i]].prefab,genTransform[i].position,Quaternion.identity);
             (obj.GetComponent<InteractableItem>()).itemPrice = Random.Range(50,101);
 //            Debug.Log(obj.GetComponent<InteractableItem>().itemPrice);
-            obj.GetComponent<InteractableItem>().SetPrice();
+            //obj.GetComponent<InteractableItem>().SetPrice();
         }
        
     }

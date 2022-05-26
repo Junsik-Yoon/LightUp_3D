@@ -37,6 +37,10 @@ public abstract class InteractableItem  : Equipable, Iinteractable
         {
             textPrice.text = itemPrice.ToString();
         }
+        // if(this.itemPrice == 0)
+        // {
+        //     transform.GetChild(0).gameObject.SetActive(false);
+        // }
 
     }
     public virtual void Interact()
