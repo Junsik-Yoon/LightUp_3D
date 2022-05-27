@@ -30,6 +30,8 @@ public class RoomChecker : MonoBehaviour
     public GameObject prefPortal;
     public GameObject shopGuyInBattle;
     public GameObject pileOfSkeletons;
+    public GameObject hiddenBoss;
+    //GameObject _hiddenBoss;
     [Header("Light")]
     public Light roomLight;
     //public GameObject roomCheck;
@@ -90,10 +92,24 @@ public class RoomChecker : MonoBehaviour
             }break;
             case "Hidden":
             {
+                int randomEvent = Random.Range(1,2);
                 //좋은 보상 혹은 싸울 필요 없는 귀찮은 준보스급 적
-                //좌표계산해서 히든방으로 들어갈 수 있는 포탈 만들기
-                //임시로 상인 
-                GameObject obj = Instantiate(shopGuyInBattle,transform.position,Quaternion.Euler(270f,90f,0f));
+                switch(randomEvent)
+                {
+                    case 1:
+                    {
+                      //  GameObject obj = Instantiate(hiddenBoss,transform.position,Quaternion.identity);
+                    }break;
+                    case 2:
+                    {
+                        
+                    }break;
+                    case 3:
+                    {
+
+                    }break;
+                }
+                
                 roomLight.color=Color.red;
             }break;
             default:

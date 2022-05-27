@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class EnemyGenerator : MonoBehaviour
 {
+    public GameObject hiddenBoss;
     RoomChecker roomChecker;   
     public event UnityAction OnEnemyDead;
     public enum StageLevel
@@ -17,6 +18,8 @@ public class EnemyGenerator : MonoBehaviour
         VERYHARD,
         IMPOSSIBLE,
         MAX,
+        BOSS,
+        SPECIAL,
     }
     [Header("Level Setting")]
     public StageLevel stageLevel;//스테이지난이도
@@ -75,7 +78,7 @@ public class EnemyGenerator : MonoBehaviour
     private void OnEnable()
     {
         if( //roomChecker.isBossRoom  || 
-            roomChecker.isHiddenRoom||
+            //roomChecker.isHiddenRoom||
             roomChecker.isStartRoom ||
             roomChecker.isShopRoom  ||
             roomChecker.isItemRoom) 
@@ -97,20 +100,40 @@ public class EnemyGenerator : MonoBehaviour
             // {
             //     //roomChecker.roomLight.enabled=true;
             // }
-            else if(roomChecker.isHiddenRoom)
-            {
-
-            }
+            // else if(roomChecker.isHiddenRoom)
+            // {
+            //     (roomChecker.hiddenBoss.GetComponent<EnemyHiddenBoss>()).Roar();
+            // }
             return; //if문 안쪽 방들은 몬스터 리젠 x
         }
 
         if(roomChecker.isBossRoom)
         {
             ++stageLevel;ResetLevelData();
+            BattleStageManager.instance.enemyCount = (int)genQuantity;
+            BattleStageManager.instance.OnEnemyDead+=DeadCount;
+            StartCoroutine(GenMonsters());
         }
-        BattleStageManager.instance.enemyCount = (int)genQuantity;
-        BattleStageManager.instance.OnEnemyDead+=DeadCount;
-        StartCoroutine(GenMonsters());
+        else if(roomChecker.isHiddenRoom)
+        {
+            stageLevel= StageLevel.BOSS;
+            ResetLevelData();
+            BattleStageManager.instance.enemyCount = (int)genQuantity;
+            BattleStageManager.instance.OnEnemyDead+=DeadCount; 
+           // Vector3 fixedPos = new Vector3(roomChecker.transform.position.x,roomChecker.transform.position.y+20f, roomChecker.transform.position.z);
+            GameObject obj = Instantiate(hiddenBoss,roomChecker.transform.position,Quaternion.identity);
+           // EnemyHiddenBoss boss = obj.transform.GetChild(0).GetComponent<EnemyHiddenBoss>();
+           // boss.StartRoutine();
+
+
+            //StartCoroutine(GenMonsters());
+        }
+        else
+        {
+            BattleStageManager.instance.enemyCount = (int)genQuantity;
+            BattleStageManager.instance.OnEnemyDead+=DeadCount;
+            StartCoroutine(GenMonsters());
+        }
     }
 
     public void ResetLevelData()
@@ -159,6 +182,14 @@ public class EnemyGenerator : MonoBehaviour
                     damageMulti = 2f;
                     hpMultiple = 2f;  
                 }break;
+                case StageLevel.BOSS:
+                {
+                    genQuantity = 1;
+                }break;
+                case StageLevel.SPECIAL:
+                {
+
+                }break;
             }
     }
 
@@ -185,6 +216,7 @@ public class EnemyGenerator : MonoBehaviour
         int randomUnit;
     //    Debug.Log(getMapSize.bounds);
 
+
         for(int i=0; i<genQuantity; ++i)
         {
             randomUnit = Random.Range(0,prefEnemys.Length);
@@ -194,6 +226,10 @@ public class EnemyGenerator : MonoBehaviour
             yield return new WaitForSeconds(genRate);
             Instantiate(prefEnemys[randomUnit],new Vector3(transform.position.x+randomRangeX,0f,transform.position.z+randomRangeZ),Quaternion.identity);
         }
+
+
+
+
     }
 
 }

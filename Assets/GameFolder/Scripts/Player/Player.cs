@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
     private MoveCommand moveCommand;
     private BattleStyle battleStyle;
     public bool isOnSkill=false;
-    
+    public GameObject hitImpactEffect;
     public GameObject smashEffect;
     string currentSceneName = "";
     Iinteractable colliderSaver;
@@ -194,15 +194,19 @@ public class Player : MonoBehaviour
             battleStyle.Attack();            
         }
     }
-    public IEnumerator MoveWhileAttack(int combo)
+    public void OnRightPunch()
     {
-        float moveDistance = 0.03f;
-        if(combo==4) moveDistance *=5;
-        
+        ItemEffectOnPlayerManager.instance.isNormalAttack = !ItemEffectOnPlayerManager.instance.isNormalAttack;
+    }
+    public IEnumerator MoveWhileAttack(float waitFor, int combo , float moveDistance)
+    {
+        float _moveDistance = moveDistance;
+        if(combo==4) _moveDistance *=5;
+        if(waitFor>0) yield return new WaitForSeconds(waitFor);
         for(int i=0; i<10; ++i)
         {
             yield return new WaitForEndOfFrame();
-            characterController.Move(transform.forward*moveDistance);
+            characterController.Move(transform.forward*_moveDistance);
         }
 
     }

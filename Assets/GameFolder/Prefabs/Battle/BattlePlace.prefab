@@ -364,6 +364,8 @@ MonoBehaviour:
     type: 3}
   pileOfSkeletons: {fileID: 3270384993945930561, guid: 9abffe0b0f456fa4483aaaa2a31dc29f,
     type: 3}
+  hiddenBoss: {fileID: 8753619234690991416, guid: 0ff003b937fbc7a42aa1c7e728c3aca1,
+    type: 3}
   roomLight: {fileID: 2803108967222499742}
 --- !u!65 &6890274741983468272
 BoxCollider:
@@ -1447,6 +1449,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d4199c3cc48ad749b0fdd556cce4417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hiddenBoss: {fileID: 8753619234690991416, guid: 0ff003b937fbc7a42aa1c7e728c3aca1,
+    type: 3}
   stageLevel: 0
   prefEnemys:
   - {fileID: 7936607832753016265, guid: 8990987f0096b884aa95bcb73ca5696f, type: 3}

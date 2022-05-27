@@ -12,11 +12,11 @@ public class ThrowingStarGloves : InteractableItem
     }
     public override void Equip()
     {
-         
+         ItemEffectOnPlayerManager.instance.isEquipShuriken=true;
     }
     public override void UnEquip()
     {
-
+        ItemEffectOnPlayerManager.instance.isEquipShuriken=false;
     }
     public override void Interact()
     {
