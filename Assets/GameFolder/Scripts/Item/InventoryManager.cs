@@ -9,7 +9,7 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance {get;private set;}
     public Text moneyText;
-    public List<ItemData> inventoryItems ;
+    public List<ItemData> inventoryItems;
     public List<ItemData> equipItems;
     public InventoryUI ui;
     public EquipUI equipUI;

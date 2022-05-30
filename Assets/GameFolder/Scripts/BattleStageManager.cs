@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.IO;
-
 public class BattleStageManager : MonoBehaviour
 {
     public static int dungeonStatus = 0; //보스클리어하거나 죽으면 다시 0으로 돌리기
@@ -11,12 +10,16 @@ public class BattleStageManager : MonoBehaviour
     public float playTime;
     public event UnityAction OnEnemyDead;
     public static BattleStageManager instance {get;private set;}
+
+
+    Player player;
     private void Awake()
     {
         instance =this;
     }
     private void Start()
     {
+
         if(dungeonStatus == 0)
         {
             playTime = Time.time;
@@ -37,10 +40,34 @@ public class BattleStageManager : MonoBehaviour
             
         }
     }
+
+    public void PlayerDeadAndReRoll()
+    {
+        //모습 아바타 리롤하기
+        int randomBattleStyle = Random.Range(0,2);
+        switch(randomBattleStyle)
+        {
+            case 0://fist style
+            {
+                player.setBattleStyle = "Fist";
+            }break;
+            case 1://magician style
+            {
+                player.setBattleStyle = "Dance";
+            }break;
+            case 2://dance style
+            {
+                player.setBattleStyle = "Magician";
+            }break;
+            //클래스 추가될 시 추가
+        }
+        SetNeededPlayerData(player);
+    }
     [System.Serializable]
     public class SavePlayerDataAsClass
     {
         public float damage;
+        public string playerBattleStyle;
         public float playerLightLeft;
         public float moveSpeed;
         public float hitRadius;
@@ -52,6 +79,7 @@ public class BattleStageManager : MonoBehaviour
     {
         SavePlayerDataAsClass playerData = new SavePlayerDataAsClass();
         //저장이 필요한 플레이어 데이터만 저장
+        //playerData.playerBattleStyle = player.setBattleStyle;
         playerData.damage = player.damage;
         playerData.playerLightLeft = player.playerLightLeft;
         playerData.equipItems = InventoryManager.instance.equipItems;

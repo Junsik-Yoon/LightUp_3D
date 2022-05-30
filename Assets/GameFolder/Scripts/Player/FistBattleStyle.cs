@@ -5,7 +5,7 @@ using UnityEngine;
 public class FistBattleStyle : BattleStyle
 {
     Player player;
-    Collider[] colls;
+    Collider[] colls; //콜라이더 캐싱
     
     int skillIndex;
     public FistBattleStyle(Player player)
@@ -21,34 +21,40 @@ public class FistBattleStyle : BattleStyle
             player.anim.SetTrigger("onAttack");
             player.StartCoroutine(player.MoveWhileAttack(0,(int)player.comboCounter,0.03f));
             player.StartCoroutine(player.ComboReset());
-            skillIndex=0;
-            
+            skillIndex=0;           
         }
     }
     public override void Skill_A()
     {
+        if(curSkillA.isPassive)return;
         if(!player.isCoolTimeA)
         {
             //colls = Physics.OverlapSphere(player.hitCollider.position,player.hitRadius,LayerMask.GetMask("Enemy"));
-            player.anim.SetTrigger("onSkillA");
+            player.anim.SetTrigger(curSkillA.animString);
             skillIndex=1;
             player.isCoolTimeA=true;
-            player.StartCoroutine(player.CoolTimeResetA(5f));
+            player.StartCoroutine(player.CoolTimeResetA(curSkillA.coolTime));
             player.isOnSkill=true;   
+            if(curSkillA.isMovingWhileOnSkill)
+            {
+                player.StartCoroutine(player.MoveWhileAttack(curSkillA.waitFor,0,curSkillA.moveDistance));
+            }
         }
     }
     public override void Skill_B()
     {
+        if(curSkillB.isPassive)return;
         if(!player.isCoolTimeB)
         {
-            //Physics.SphereCast()
-            //colls = Physics.OverlapSphere(player.hitCollider.position,player.hitRadius,LayerMask.GetMask("Enemy"));
-            player.anim.SetTrigger("onSkillB");
+            player.anim.SetTrigger(curSkillB.animString);
             skillIndex=2;
             player.isCoolTimeB=true;
-            player.StartCoroutine(player.CoolTimeResetB(8f));
+            player.StartCoroutine(player.CoolTimeResetB(curSkillB.coolTime));
             player.isOnSkill=true;   
-            player.StartCoroutine(player.MoveWhileAttack(0.6f,0,0.1f));
+            if(curSkillB.isMovingWhileOnSkill)
+            {
+                player.StartCoroutine(player.MoveWhileAttack(curSkillB.waitFor,0,curSkillB.moveDistance));
+            }
         }
     }
     public override void Dodge()
@@ -67,8 +73,8 @@ public class FistBattleStyle : BattleStyle
         float damageMultiplier;
         float knockBackRange;
         if(skillIndex == 0) {damageMultiplier = 1f; knockBackRange =0.5f;}
-        else if (skillIndex == 1) {damageMultiplier = 2f; knockBackRange =3f;}
-        else if (skillIndex == 2) {damageMultiplier = 3f; knockBackRange =2.5f;}
+        else if (skillIndex == 1) {damageMultiplier = curSkillA.damageMultiplier; knockBackRange =curSkillA.knockBackRange;}
+        else if (skillIndex == 2) {damageMultiplier = curSkillB.damageMultiplier; knockBackRange =curSkillB.knockBackRange;}
         else {damageMultiplier = 0f; knockBackRange = 0f;}
         colls = Physics.OverlapSphere(player.hitCollider.position,player.hitRadius,LayerMask.GetMask("Enemy"));
         if(colls.Length>0)
@@ -88,43 +94,93 @@ public class FistBattleStyle : BattleStyle
             else if(skillIndex ==1)
             {
                 
-                for(int i=0; i<colls.Length;++i)
+                if(curSkillA.isTargetingSingle)
                 {
-                    Enemy enemy = colls[i].gameObject.GetComponent<Enemy>();
+                    Enemy enemy = colls[0].gameObject.GetComponent<Enemy>();
                     if(enemy.eState!=eEnemyState.DIE)
                     {
                         enemy.Hit(player.damage * damageMultiplier,knockBackRange);
-                        Debug.Log(player.damage * damageMultiplier);
-                        
+                        if(curSkillA.prefEffectHit!=null)
+                        {
+                            Vector3 effectPos = new Vector3(player.hitCollider.transform.position.x,player.hitCollider.transform.position.y+1f,player.hitCollider.transform.position.z);
+                            GameObject obj = GameObject.Instantiate(curSkillA.prefEffectHit,effectPos,Quaternion.identity);
+                            GameObject.Destroy(obj,0.5f);
+                        }       
                     } 
-
                 }
-
+                else
+                {
+                    for(int i=0; i<colls.Length;++i)
+                    {    
+                        Enemy enemy = colls[i].gameObject.GetComponent<Enemy>();
+                        if(enemy.eState!=eEnemyState.DIE)
+                        {
+                            enemy.Hit(player.damage * damageMultiplier,knockBackRange);
+                            if(curSkillA.prefEffectHit!=null)
+                            {
+                                Vector3 effectPos = new Vector3(player.hitCollider.transform.position.x,player.hitCollider.transform.position.y+1f,player.hitCollider.transform.position.z);
+                                GameObject obj = GameObject.Instantiate(curSkillA.prefEffectHit,effectPos,Quaternion.identity);
+                                GameObject.Destroy(obj,0.5f);
+                            }                                   
+                        } 
+                    }
+                }
             }
             else if(skillIndex ==2)
             {
-                //colls = Physics.OverlapSphere(player.hitCollider.position,player.hitRadius,LayerMask.GetMask("Enemy"));
-                for(int i=0; i<colls.Length;++i)
+                if(curSkillB.isTargetingSingle)
                 {
-                    Enemy enemy = colls[i].gameObject.GetComponent<Enemy>();
+                    Enemy enemy = colls[0].gameObject.GetComponent<Enemy>();
                     if(enemy.eState!=eEnemyState.DIE)
                     {
                         enemy.Hit(player.damage * damageMultiplier,knockBackRange);
-                        Vector3 effectPos = new Vector3(player.hitCollider.transform.position.x,player.hitCollider.transform.position.y+1f,player.hitCollider.transform.position.z);
-                        GameObject obj = GameObject.Instantiate(player.hitImpactEffect,effectPos,Quaternion.identity);
-                        GameObject.Destroy(obj,0.5f);
-                    //    Debug.Log(player.damage * damageMultiplier);
+                        if(curSkillB.prefEffectHit!=null)
+                        {
+                            Vector3 effectPos = new Vector3(player.hitCollider.transform.position.x,player.hitCollider.transform.position.y+1f,player.hitCollider.transform.position.z);
+                            GameObject obj = GameObject.Instantiate(curSkillB.prefEffectHit,effectPos,Quaternion.identity);
+                            GameObject.Destroy(obj,0.5f);
+                        }                        
                     } 
-                }      
+                }
+                else
+                {
+                    for(int i=0; i<colls.Length;++i)
+                    {    
+                        Enemy enemy = colls[i].gameObject.GetComponent<Enemy>();
+                        if(enemy.eState!=eEnemyState.DIE)
+                        {
+                            enemy.Hit(player.damage * damageMultiplier,knockBackRange);
+                            if(curSkillB.prefEffectHit!=null)
+                            {
+                                Vector3 effectPos = new Vector3(player.hitCollider.transform.position.x,player.hitCollider.transform.position.y+1f,player.hitCollider.transform.position.z);
+                                GameObject obj = GameObject.Instantiate(curSkillB.prefEffectHit,effectPos,Quaternion.identity);
+                                GameObject.Destroy(obj,0.5f);
+                            }
+                        } 
+                    }
+                }    
             }
         } 
         //else//스킬이펙트용
         {
             if(skillIndex ==1)
             {
-                Vector3 effectPos = new Vector3(player.hitCollider.transform.position.x,player.hitCollider.transform.position.y-1.4f,player.hitCollider.transform.position.z);
-                GameObject obj = GameObject.Instantiate(player.smashEffect,effectPos,Quaternion.identity);
-                GameObject.Destroy(obj,1.5f);
+                if(curSkillA.prefEffectOnGround!=null)
+                {
+                    Vector3 effectPos = new Vector3(player.hitCollider.transform.position.x,player.hitCollider.transform.position.y-1.4f,player.hitCollider.transform.position.z);
+                    GameObject obj = GameObject.Instantiate(curSkillA.prefEffectOnGround,effectPos,Quaternion.identity);
+                    GameObject.Destroy(obj,1.5f);
+                }
+
+            }
+            else if(skillIndex ==2)
+            {
+                if(curSkillB.prefEffectOnGround!=null)
+                {
+                    Vector3 effectPos = new Vector3(player.hitCollider.transform.position.x,player.hitCollider.transform.position.y-1.4f,player.hitCollider.transform.position.z);
+                    GameObject obj = GameObject.Instantiate(curSkillB.prefEffectOnGround,effectPos,Quaternion.identity);
+                    GameObject.Destroy(obj,1.5f);
+                }
             }
 
         }     

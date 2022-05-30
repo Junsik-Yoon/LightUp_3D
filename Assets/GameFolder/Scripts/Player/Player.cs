@@ -1,30 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using System.IO;
-
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {   
-
-    //public void SavePlayerData()
-    // {
-    //     string jsonData = JsonUtility.ToJson(playerData,true);
-    //     string path = Path.Combine(Application.dataPath,"playerData.json");
-    //     File.WriteAllText(path,jsonData);
-    // }
-    // public void LoadPlayerData()
-    // {
-    //     string path = Path.Combine(Application.dataPath,"playerData.json");
-    //     string jsonData = File.ReadAllText(path);
-    //     playerData = JsonUtility.FromJson<PlayerData>(jsonData);
-    // }
-    
+    public Image skillImageA;
+    public Image skillImageB;
     public float gravity = -9.8f;
     public float damage = 5f;
+    public float defaultDamage = 5f;
     public event UnityAction OnCoolTime;
     public PlayerLight playerLight;
     public float playerLightLeft;
@@ -78,37 +66,26 @@ public class Player : MonoBehaviour
         }
     }
     public float moveSpeed = 5f;
+    public float defaultMoveSpeed = 5f;
 
     public bool isInvincible=false;
     public Animator anim;
     public CharacterController characterController;
-    public NavMeshAgent navMeshAgent;
     public Camera playerCamera;
     private MoveCommand moveCommand;
-    private BattleStyle battleStyle;
+    public string setBattleStyle;
+    public BattleStyle battleStyle;
     public bool isOnSkill=false;
     public GameObject hitImpactEffect;
     public GameObject smashEffect;
     string currentSceneName = "";
     Iinteractable colliderSaver;
-    IEnumerator temp;
+    //IEnumerator temp;
     private void Awake()
     {
-        currentSceneName = SceneManager.GetActiveScene().name;
         anim = GetComponent<Animator>();
-       // navMeshAgent = GetComponent<NavMeshAgent>();
         characterController = GetComponent<CharacterController>();
-        battleStyle = new FistBattleStyle(this);
-        // if( currentSceneName == "VillageScene")
-        // {
-        //     anim.applyRootMotion = false;
-        //     characterController.enabled = false;
-        //     moveCommand = new MouseMoveCommand(this);
-        // }
-        // else
-        // {
-            moveCommand = new NormalMoveCommand(this);//맨마지막
-       // }
+
     }
     private void Start()
     {
@@ -116,6 +93,39 @@ public class Player : MonoBehaviour
         {
             BattleStageManager.instance.LoadPlayerData(this);
         }
+        //테스트
+        setBattleStyle = "Dance";
+        // 
+        anim.runtimeAnimatorController = 
+            Resources.Load(Path.Combine("AnimationController/",setBattleStyle)) as RuntimeAnimatorController;
+        switch(setBattleStyle)
+        {
+            case "Fist":
+            {
+                battleStyle = new FistBattleStyle(this);
+            }break;
+            case "Dance":
+            {
+                //anim.applyRootMotion=true;
+                battleStyle = new DanceBattleStyle(this);
+            }break;
+            case "Magician":
+            {
+                battleStyle = new MagicianBattleStyle(this);
+            }break;
+        }
+        
+        
+        moveCommand = new NormalMoveCommand(this);//맨마지막
+        SkillManager.instance.LoadSkillData();
+        SkillManager.instance.UpdatePlayerSkillData();
+        if(SceneManager.GetActiveScene().name == "Stage"||
+        SceneManager.GetActiveScene().name == "EnemyBossBattle")
+        {
+            skillImageA.sprite = battleStyle.curSkillA.icon;
+            skillImageB.sprite = battleStyle.curSkillB.icon;
+        }
+
     }
     private void Update()
     {

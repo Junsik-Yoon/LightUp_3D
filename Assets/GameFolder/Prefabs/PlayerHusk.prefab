@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 1297454540}
   - component: {fileID: 1297454539}
   m_Layer: 8
-  m_Name: Particle System
+  m_Name: NukeFist
   m_TagString: Particle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1297454538
 Transform:
   m_ObjectHideFlags: 0
@@ -25,12 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297454537}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19, y: -0, z: 0}
+  m_LocalRotation: {x: -0.0000000119830394, y: -0.000000037252896, z: -0.0000000060674146,
+    w: 1}
+  m_LocalPosition: {x: 19, y: -0.000010312535, z: 0.000016475096}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4192716698214951838}
-  m_RootOrder: 3
+  m_Father: {fileID: 8103887455097381928}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &1297454540
 ParticleSystem:
@@ -168,7 +169,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -222,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.97232985, g: 1, b: 0.6556604, a: 1}
+      maxColor: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -666,7 +667,7 @@ ParticleSystem:
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: 0, y: -90, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -983,8 +984,8 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: 0
-          outSlope: 0
+          inSlope: -2
+          outSlope: -2
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -992,8 +993,8 @@ ParticleSystem:
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: -2
-          outSlope: -2
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -1295,7 +1296,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -1303,8 +1304,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 1}
+        key0: {r: 0, g: 0, b: 0, a: 1}
+        key1: {r: 0, g: 0, b: 0, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -32661,6 +32662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 813f653a5bd4788459da60f5fe940139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillImageA: {fileID: 0}
+  skillImageB: {fileID: 0}
   gravity: -9.8
   damage: 5
   playerLight: {fileID: 6194039424862284088}
@@ -32676,10 +32679,10 @@ MonoBehaviour:
   coolMaxB: 0
   coolMaxDodge: 0
   moveSpeed: 5
+  defaultMoveSpeed: 5
   isInvincible: 0
   anim: {fileID: 0}
   characterController: {fileID: 0}
-  navMeshAgent: {fileID: 0}
   playerCamera: {fileID: 6194039425865999711}
   isOnSkill: 0
   hitImpactEffect: {fileID: 7226583673155636401, guid: 32d3466d1ca415743869a463edef01a9,
@@ -60682,7 +60685,7 @@ Transform:
   - {fileID: 4193330510869480974}
   - {fileID: 4193031971996409538}
   - {fileID: 4192956542139903354}
-  - {fileID: 1297454538}
+  - {fileID: 8103887455097381928}
   m_Father: {fileID: 4192766188070354016}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -73820,3 +73823,34 @@ MonoBehaviour:
   allParts: []
   isInitialized: 0
   characterGender: 0
+--- !u!1 &9162572718386486841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8103887455097381928}
+  m_Layer: 8
+  m_Name: FistEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8103887455097381928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9162572718386486841}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1297454538}
+  m_Father: {fileID: 4192716698214951838}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

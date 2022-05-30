@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PlayerLight : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class PlayerLight : MonoBehaviour
         set
         {    
             _lightPower = value;
+            //if(_lightPower<=1.1f) -> dead ->reroll
             OnChangeLight?.Invoke();
         }
     }

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239d8e3f692cdb24baf5142e4555fc4a, type: 3}
+  m_Name: WhereIAmIsTheStage
+  m_EditorClassIdentifier: 
+  skillUse: {fileID: -3970641335404320751, guid: 7f0f8a9f83ec487488d8580e81d5ca5b,
+    type: 3}
+  name: WhereIAmIsTheStage
+  isPassive: 1
+  isTargetingSingle: 0
+  isMovingWhileOnSkill: 0
+  waitFor: 0
+  moveDistance: 0
+  coolTime: 0
+  damageMultiplier: 0
+  knockBackRange: 0
+  icon: {fileID: 21300000, guid: cc8cc6bb31139314489dfd91059d5ee6, type: 3}
+  prefEffectHit: {fileID: 0}
+  prefEffectOnGround: {fileID: 0}
+  prefEffectOnHand: {fileID: 0}
+  skillDescription: "\uB0B4\uAC00 \uC788\uB294 \uACF3\uC774 \uACE7 \uC2A4\uD14C\uC774\uC9C0"
+  animString: 

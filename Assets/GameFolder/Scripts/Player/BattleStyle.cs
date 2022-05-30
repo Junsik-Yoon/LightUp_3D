@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class BattleStyle
 {
+    public SkillData curSkillA;
+    public SkillData curSkillB;
     public abstract void Attack();
     public abstract void Skill_A();
     public abstract void Skill_B();
