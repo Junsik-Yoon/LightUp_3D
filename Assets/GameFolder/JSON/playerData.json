@@ -1,15 +1,20 @@
 {
-    "damage": 5.0,
-    "playerLightLeft": 165.00088500976563,
+    "damage": 5.5,
+    "playerBattleStyle": "",
+    "playerLightLeft": 173.26133728027345,
     "moveSpeed": 5.0,
     "hitRadius": 1.0,
-    "equipItems": [],
-    "inventoryItems": [
+    "equipItems": [
         {
-            "instanceID": 41354
+            "instanceID": 19010
         },
         {
-            "instanceID": 41356
+            "instanceID": 19012
+        }
+    ],
+    "inventoryItems": [
+        {
+            "instanceID": 19012
         }
     ],
     "playTime": 0.0

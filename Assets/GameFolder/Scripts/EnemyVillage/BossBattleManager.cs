@@ -86,8 +86,35 @@ public class BossBattleManager : MonoBehaviour
 
         //등급 정하기
         //몬스터 몇마리 잡고 속도가 얼마나 빨랐는가 등으로 계산해서 돈으로 환산
-        string rank = "SSS";
-        string rewardString = 100.ToString();
+
+        string rank;
+        string rewardString;
+        if(clearTime < 1200)// && BattleStageManager.enemyKilled > 200)
+        {
+            rank = "SSS";
+            rewardString = 100.ToString();
+        }
+        else if(clearTime <1500)// && BattleStageManager.enemyKilled > 200)  ||(clearTime <1200 && BattleStageManager.enemyKilled > 160) )
+        {
+            rank = "SS";
+            rewardString = 80.ToString();
+        }
+        else if(clearTime < 1800)// && BattleStageManager.enemyKilled > 160)
+        {
+            rank = "S";
+            rewardString = 60.ToString();
+        }
+        else if(clearTime < 2100)
+        {
+            rank = "A";
+            rewardString = 40.ToString();
+        }
+        else
+        {
+            rank = "B";
+            rewardString = 20.ToString();
+        }
+
         //결과 창 띄우고
         resultUI.SetActive(true);
         yield return new WaitForSeconds(1f);

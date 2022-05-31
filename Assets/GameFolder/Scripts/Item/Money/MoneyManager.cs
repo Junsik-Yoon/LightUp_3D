@@ -9,6 +9,7 @@ public class MoneyManager : MonoBehaviour
     public GameObject moneyUI;
     public event UnityAction OnMoneyStatusChanged;
     public GameObject moneyDrop;
+    public bool santaDropStart=false;
 
     public static MoneyManager instance {get; private set;}
     private void Awake()
@@ -61,5 +62,16 @@ public class MoneyManager : MonoBehaviour
         }
     }
 
-
+    public IEnumerator SantaDrop()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        while(true)
+        {
+            if(!santaDropStart) break;
+            yield return new WaitForSeconds(5f);
+            MoneyDrop(player.transform,1);
+        }
+        
+        
+    }
 }

@@ -6,6 +6,12 @@ using System.IO;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+public enum eBattleStyle
+{
+    FIST,
+    DANCE,
+    MAGIC,
+}
 public class Player : MonoBehaviour
 {   
     public Image skillImageA;
@@ -73,7 +79,8 @@ public class Player : MonoBehaviour
     public CharacterController characterController;
     public Camera playerCamera;
     private MoveCommand moveCommand;
-    public string setBattleStyle;
+    public string setBattleStyle = "Fist";
+   // public eBattleStyle eBattleStyle;
     public BattleStyle battleStyle;
     public bool isOnSkill=false;
     public GameObject hitImpactEffect;

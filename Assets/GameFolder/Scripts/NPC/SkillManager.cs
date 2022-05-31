@@ -38,13 +38,16 @@ public class SkillManager : MonoBehaviour
         //usingSkillList = new List<SkillData>();
         //unUsingSkillList = new List<SkillData>();
 
-        LoadSkillData();
-        UpdateSkillUI();
+    //    LoadSkillData();
+    //    UpdateSkillUI();
 
         //InitSkillUI();
     }
     private void Start()
     {
+        LoadSkillData();
+        UpdateSkillUI();
+        
         //총 스킬 리스트에서 불러와야해. 무엇-> 지금 사용중인 스킬과 사용중이지 않은 스킬을
         //임시로 세이브
         //SaveSkillData();

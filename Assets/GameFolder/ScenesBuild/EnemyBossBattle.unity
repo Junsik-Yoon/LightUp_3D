@@ -517,6 +517,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2be092261c6d51f4d945d7ad93450e79, type: 3}
+--- !u!114 &34051290 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7496966058192741943, guid: 6fd4159d571359c41a51cd9fa4a94af1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1335822425}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &35315963 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 91acec31ffde6a145b90d11a06ece1c9,
@@ -1109,6 +1121,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e15ce996b6e46a4eb6081d87f7363c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &91703350 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7496966058455382588, guid: 6fd4159d571359c41a51cd9fa4a94af1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1335822425}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &100824104 stripped
@@ -8292,6 +8316,16 @@ PrefabInstance:
       propertyPath: m_StepOffset
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 6194039424921967643, guid: b3c16eeba8ad88d419ef7d41d8ac931b,
+        type: 3}
+      propertyPath: skillImageA
+      value: 
+      objectReference: {fileID: 34051290}
+    - target: {fileID: 6194039424921967643, guid: b3c16eeba8ad88d419ef7d41d8ac931b,
+        type: 3}
+      propertyPath: skillImageB
+      value: 
+      objectReference: {fileID: 91703350}
     - target: {fileID: 6194039425865999705, guid: b3c16eeba8ad88d419ef7d41d8ac931b,
         type: 3}
       propertyPath: m_TagString
@@ -25450,6 +25484,8 @@ GameObject:
   - component: {fileID: 1655610461}
   - component: {fileID: 1655610462}
   - component: {fileID: 1655610463}
+  - component: {fileID: 1655610464}
+  - component: {fileID: 1655610465}
   m_Layer: 0
   m_Name: BossBattleManager
   m_TagString: Untagged
@@ -25553,6 +25589,42 @@ MonoBehaviour:
   moneyText: {fileID: 493569179}
   moneyUI: {fileID: 981654644}
   moneyDrop: {fileID: 6296033389265227534, guid: 433e8a9e986dc324baaeea7c92bc2138,
+    type: 3}
+  santaDropStart: 0
+--- !u!114 &1655610464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655610458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2cc57540273354cb8a2c0b291fc142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillUI: {fileID: 0}
+  wholeSkillList: []
+  usingSkillList: []
+  unUsingSkillList: []
+  usingSkills: []
+  notUsingSkills: []
+  maxUsingSkills: 2
+  maxUnUsingSkills: 5
+--- !u!114 &1655610465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655610458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d3cb146c2d5de42a657108303109e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEquipShuriken: 0
+  prefShuriken: {fileID: 9104402064228441168, guid: 89d4c00afd67e964bab5d87e4d619ed0,
     type: 3}
 --- !u!1001 &1655725870
 PrefabInstance:

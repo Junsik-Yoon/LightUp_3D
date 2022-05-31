@@ -12,11 +12,12 @@ public class SantaHat :InteractableItem
     }
     public override void Equip()
     {
-         
+        MoneyManager.instance.santaDropStart=true;
+        MoneyManager.instance.StartCoroutine(MoneyManager.instance.SantaDrop());
     }
     public override void UnEquip()
     {
-
+        MoneyManager.instance.santaDropStart=false;        
     }
     public override void Interact()
     {

@@ -20,7 +20,7 @@ MonoBehaviour:
   waitFor: 0
   moveDistance: 0
   coolTime: 6
-  damageMultiplier: 1.5
+  damageMultiplier: 0.5
   knockBackRange: 1
   icon: {fileID: 21300000, guid: ad16d60c5b741384394131040b323bcf, type: 3}
   prefEffectHit: {fileID: 0}

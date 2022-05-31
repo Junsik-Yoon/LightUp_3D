@@ -1454,6 +1454,10 @@ MonoBehaviour:
   stageLevel: 0
   prefEnemys:
   - {fileID: 7936607832753016265, guid: 8990987f0096b884aa95bcb73ca5696f, type: 3}
+  - {fileID: 7300546495840840064, guid: 8a5d3bc8dba85ef4f90b64ddf610021d, type: 3}
+  - {fileID: 5203262924974844607, guid: 48893190dcc3e1b49aa6eb81b7d8b3a7, type: 3}
+  - {fileID: 7936607832753016265, guid: 8990987f0096b884aa95bcb73ca5696f, type: 3}
+  - {fileID: 7300546495840840064, guid: 8a5d3bc8dba85ef4f90b64ddf610021d, type: 3}
   prefPortal: {fileID: 1416116004739906970, guid: 8941ac06978d85e4088b80912ecf738a,
     type: 3}
   mapGround: {fileID: 2360333471749771541}
