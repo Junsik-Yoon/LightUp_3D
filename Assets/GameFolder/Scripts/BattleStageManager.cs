@@ -8,6 +8,8 @@ public class BattleStageManager : MonoBehaviour
     public static int dungeonStatus = 0; //보스클리어하거나 죽으면 다시 0으로 돌리기
     public static int enemyKilled = 0;
     public float playTime;
+
+    public GameObject bloodFilledParticle;//bloodfilled임시저장
     public event UnityAction OnEnemyDead;
     public static BattleStageManager instance {get;private set;}
 

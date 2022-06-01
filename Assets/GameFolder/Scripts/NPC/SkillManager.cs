@@ -9,8 +9,8 @@ public class SkillManager : MonoBehaviour
     [System.Serializable]
     public class ListofSkills
     {
-        public List<SkillData> uSkillList ;//= new List<SkillData>();
-        public List<SkillData> unUSkillList ;//= new List<SkillData>();
+        public List<SkillData> uSkillList = new List<SkillData>();
+        public List<SkillData> unUSkillList = new List<SkillData>();
     }
    
     public static SkillManager instance {get;private set;}

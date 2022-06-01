@@ -6,12 +6,19 @@ using UnityEngine.UI;
 
 public class StatShop : MonoBehaviour, Iinteractable
 {
-    int requiredMoney = 10;
+    int requiredCash = 10;
     public GameObject statUI;
+    public Text villageLevelText;
+    public Text expText;
     public Text showLightCashText;
-    private void Awake()
+
+    public Text strText;
+    public Text agiText;
+    public Text HPText;
+
+    private void Start()
     {
-        GameManager.instance.OnChangeLightCash+=ChangeMoneyText;
+        VillageLevelManager.instance.OnChangeLightCash+=ChangeMoneyText;
     }
     public void Interact()
     {
@@ -25,13 +32,31 @@ public class StatShop : MonoBehaviour, Iinteractable
     IEnumerator StatUIOperate()
     {
         yield return new WaitForSeconds(2f);
+        UpdateStatUI();
         statUI.SetActive(true);
+    }
+    public void UpdateStatUI()
+    {
+        villageLevelText.text = VillageLevelManager.instance.villageLevel.ToString();
+        expText.text = 
+            VillageLevelManager.instance.curExp + " / " + VillageLevelManager.instance.expRequired;
+        showLightCashText.text = VillageLevelManager.instance.lightCash.ToString();
+        strText.text = VillageLevelManager.instance.strMulti.ToString("F1");
+        agiText.text = VillageLevelManager.instance.agilMulti.ToString("F1");
+        HPText.text = VillageLevelManager.instance.hpMulti.ToString("F1");
     }
 
     public void OnConfirmButton()
     {
         //스탯 바뀐 것 저장 & 스탯이 바뀐 것이 있을 때만 활성화
+
+        VillageLevelManager.instance.strMulti = float.Parse(strText.text);
+        VillageLevelManager.instance.agilMulti = float.Parse(agiText.text);
+        VillageLevelManager.instance.hpMulti = float.Parse(HPText.text);
+   
+        VillageLevelManager.instance.SetPlayerStatMultiplier();
         statUI.SetActive(false);
+        
     }
     public void OnCancelButton()
     {
@@ -41,9 +66,9 @@ public class StatShop : MonoBehaviour, Iinteractable
     public void OnUpButton(Text type)
     {
         //실제 수치도 변하도록 작업하기
-        if(GameManager.instance.lightCash>=requiredMoney)
+        if(VillageLevelManager.instance.lightCash>= requiredCash)
         {
-            GameManager.instance.lightCash -=requiredMoney;
+            VillageLevelManager.instance.lightCash -= requiredCash;
             //Debug.Log(type.text);
             double value = Convert.ToDouble(type.text);
             type.text = (value += 0.1).ToString("F1");
@@ -56,13 +81,13 @@ public class StatShop : MonoBehaviour, Iinteractable
         double value = Convert.ToDouble(type.text);
         if(value >1.0)
         {
-            GameManager.instance.lightCash +=requiredMoney;
+            VillageLevelManager.instance.lightCash += requiredCash;
             type.text = (value -= 0.1).ToString("F1");
 
         }
     }
     public void ChangeMoneyText()
     {
-        showLightCashText.text = GameManager.instance.lightCash.ToString();
+        showLightCashText.text = VillageLevelManager.instance.lightCash.ToString();
     }
 }

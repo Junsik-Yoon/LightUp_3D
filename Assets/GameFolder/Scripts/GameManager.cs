@@ -12,23 +12,7 @@ public class GameManager : MonoBehaviour
         instance=this;
     }
 
-    public event UnityAction OnChangeLightCash;
-    
-    private int _lightCash = 100;
-    public int lightCash
-    {
-        get
-        {
-            return _lightCash;
-        }
-        set
-        {
-              
-            _lightCash = value;
-            OnChangeLightCash?.Invoke();
-            
-        }
-    }
+
     public GameObject mouseEffect;
 
     public bool isEventChecked = false;

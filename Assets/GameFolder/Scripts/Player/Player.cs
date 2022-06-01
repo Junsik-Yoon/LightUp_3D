@@ -90,6 +90,8 @@ public class Player : MonoBehaviour
     //IEnumerator temp;
     private void Awake()
     {
+        damage = 5f;
+        moveSpeed = 5f;
         anim = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
 
@@ -132,7 +134,14 @@ public class Player : MonoBehaviour
             skillImageA.sprite = battleStyle.curSkillA.icon;
             skillImageB.sprite = battleStyle.curSkillB.icon;
         }
-
+        StartCoroutine(Init());
+    }
+    IEnumerator Init()
+    {
+        yield return new WaitForEndOfFrame();
+        damage *= VillageLevelManager.instance.strMulti;
+        moveSpeed *= VillageLevelManager.instance.agilMulti;
+        //디폴트체력값 세팅해서 스테이지 0일때만 기본체력 올리기
     }
     private void Update()
     {

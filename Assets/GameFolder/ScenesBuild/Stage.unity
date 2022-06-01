@@ -629,6 +629,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1733097762}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &633150045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633150044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a17a307176085d44eb2af5ee10eb3ec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  villageLevel: 0
+  expRequired: 0
+  curExp: 0
+  strMulti: 0
+  agilMulti: 0
+  hpMulti: 0
 --- !u!114 &633150048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1757,6 +1775,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1984235260
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3866583881286213777, guid: 1968faf3f86843f498058ca69d3c7f6e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866583881286213777, guid: 1968faf3f86843f498058ca69d3c7f6e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866583881286213777, guid: 1968faf3f86843f498058ca69d3c7f6e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866583881286213777, guid: 1968faf3f86843f498058ca69d3c7f6e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866583881286213777, guid: 1968faf3f86843f498058ca69d3c7f6e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866583881286213777, guid: 1968faf3f86843f498058ca69d3c7f6e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866583881286213777, guid: 1968faf3f86843f498058ca69d3c7f6e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866583881286213777, guid: 1968faf3f86843f498058ca69d3c7f6e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866583881286213777, guid: 1968faf3f86843f498058ca69d3c7f6e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866583881286213777, guid: 1968faf3f86843f498058ca69d3c7f6e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866583881286213777, guid: 1968faf3f86843f498058ca69d3c7f6e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866583881286213791, guid: 1968faf3f86843f498058ca69d3c7f6e,
+        type: 3}
+      propertyPath: m_Name
+      value: Item_BloodFilledHelmet
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1968faf3f86843f498058ca69d3c7f6e, type: 3}
 --- !u!114 &1998678047 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6836521727804189068, guid: 07a04ca19eb9b9f4f8d56b3c39be4669,
@@ -1788,11 +1875,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4282035387883826736, guid: b3c16eeba8ad88d419ef7d41d8ac931b,
-        type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6194039424921967643, guid: b3c16eeba8ad88d419ef7d41d8ac931b,
         type: 3}
       propertyPath: skillImageA
@@ -2534,7 +2616,7 @@ PrefabInstance:
     - target: {fileID: 7300546495841269152, guid: 8a5d3bc8dba85ef4f90b64ddf610021d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7300546495841269152, guid: 8a5d3bc8dba85ef4f90b64ddf610021d,
         type: 3}

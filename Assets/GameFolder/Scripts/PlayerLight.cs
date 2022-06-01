@@ -23,7 +23,7 @@ public class PlayerLight : MonoBehaviour
             OnChangeLight?.Invoke();
         }
     }
-    float lightRunoutSpeed=1f;
+    public float lightRunoutSpeed=1f;
     private void Awake()
     {   
         playerLight = GetComponent<Light>();
