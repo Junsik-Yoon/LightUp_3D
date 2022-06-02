@@ -16,6 +16,11 @@ public class FistBattleStyle : BattleStyle
     {
         if(player.comboCounter<4)
         {
+            
+            AudioClip punchSound = Resources.Load<AudioClip>("Sound/punchSoundSmall");
+            player.audioSource.clip = punchSound;
+            player.audioSource.Play();
+            
             colls = Physics.OverlapSphere(player.hitCollider.position,player.hitRadius,LayerMask.GetMask("Enemy"));
             ++player.comboCounter;
             player.anim.SetTrigger("onAttack");

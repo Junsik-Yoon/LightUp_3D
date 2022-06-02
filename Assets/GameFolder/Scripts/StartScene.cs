@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class StartScene : MonoBehaviour
 {
+    public AudioSource audio;
     public Button[] btns;
     public Light scenePointLight;
     private float targetIntensity;
     private float currentIntensity;
     private float targetRange=0f;
+    public bool killLightSwitch = false;
 
     public bool lightOn = true;
     private void Start()
@@ -20,18 +22,22 @@ public class StartScene : MonoBehaviour
     }
     private void Update()
     {
-        if(lightOn)
+        if(!killLightSwitch)
         {
-            lightOn = false;
-            scenePointLight.intensity = currentIntensity;
-            scenePointLight.range = targetRange + (currentIntensity/3f)+10f;
+            if(lightOn)
+            {
+                lightOn = false;
+                scenePointLight.intensity = currentIntensity;
+                scenePointLight.range = targetRange + (currentIntensity/3f)+10f;
+            }
+            else
+            {
+                lightOn = true;
+                scenePointLight.intensity = targetIntensity;
+                scenePointLight.range = targetRange + (targetIntensity/3f)+10f;
+            }
         }
-        else
-        {
-            lightOn = true;
-            scenePointLight.intensity = targetIntensity;
-            scenePointLight.range = targetRange + (targetIntensity/3f)+10f;
-        }
+
     }
     
     public void OnStartButton()
@@ -49,6 +55,7 @@ public class StartScene : MonoBehaviour
 
     IEnumerator WaitForNextMove(float time, string scene)
     {
+        audio.Play();
         for(int i = 0; i< 20; ++i)
         {
             yield return new WaitForSeconds(time);
@@ -56,7 +63,14 @@ public class StartScene : MonoBehaviour
         }
         SceneManager.LoadScene(scene);
     }
-
+    public void OnMouseEnter(Image image)
+    {
+        image.color = new Color(0.5f,0.5f,0.5f,0.5f);
+    }
+    public void OnMouseExit(Image image)
+    {
+        image.color = new Color(0.5f,0.5f,0.5f,0f);
+    }
     IEnumerator EnlargingLight()
     {
         for(int i = 0; i< 30; ++i)

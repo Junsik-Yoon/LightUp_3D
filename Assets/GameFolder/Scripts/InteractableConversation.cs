@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class InteractableConversation : MonoBehaviour
 {
+    public GameObject chief;
     public GameObject otherPerson;
     public GameObject dialogue;
     public Text sceneText;
@@ -86,6 +87,7 @@ public class InteractableConversation : MonoBehaviour
     IEnumerator WaitForNextConver3()
     {
         yield return new WaitForSeconds(2f);
+
         React();
         yield return new WaitForSeconds(4f);
         React();
@@ -93,7 +95,10 @@ public class InteractableConversation : MonoBehaviour
     }
     IEnumerator WaitForNextConver4()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+        Animator anim = chief.GetComponent<Animator>();
+        anim.SetTrigger("Banging");
+        yield return new WaitForSeconds(4f);
         React();
         yield return new WaitForSeconds(2f);
         SetActiveDialogue(false);

@@ -14,6 +14,7 @@ public enum eBattleStyle
 }
 public class Player : MonoBehaviour
 {   
+    public AudioSource audioSource;
     public Image skillImageA;
     public Image skillImageB;
     public float gravity = -9.8f;
@@ -86,15 +87,17 @@ public class Player : MonoBehaviour
     public GameObject hitImpactEffect;
     public GameObject smashEffect;
     string currentSceneName = "";
+
+    
     Iinteractable colliderSaver;
     //IEnumerator temp;
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         damage = 5f;
         moveSpeed = 5f;
         anim = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
-
     }
     private void Start()
     {
@@ -103,7 +106,7 @@ public class Player : MonoBehaviour
             BattleStageManager.instance.LoadPlayerData(this);
         }
         //테스트
-        setBattleStyle = "Dance";
+      //  setBattleStyle = "Dance";
         // 
         anim.runtimeAnimatorController = 
             Resources.Load(Path.Combine("AnimationController/",setBattleStyle)) as RuntimeAnimatorController;
@@ -126,19 +129,22 @@ public class Player : MonoBehaviour
         
         
         moveCommand = new NormalMoveCommand(this);//맨마지막
-        SkillManager.instance.LoadSkillData();
-        SkillManager.instance.UpdatePlayerSkillData();
-        if(SceneManager.GetActiveScene().name == "Stage"||
-        SceneManager.GetActiveScene().name == "EnemyBossBattle")
-        {
-            skillImageA.sprite = battleStyle.curSkillA.icon;
-            skillImageB.sprite = battleStyle.curSkillB.icon;
-        }
+
         StartCoroutine(Init());
     }
     IEnumerator Init()
     {
         yield return new WaitForEndOfFrame();
+        
+        SkillManager.instance.LoadSkillData();
+        SkillManager.instance.UpdatePlayerSkillData();
+        if(SceneManager.GetActiveScene().name == "Stage"||
+        SceneManager.GetActiveScene().name == "EnemyBossBattle"||
+        SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            skillImageA.sprite = battleStyle.curSkillA.icon;
+            skillImageB.sprite = battleStyle.curSkillB.icon;
+        }
         damage *= VillageLevelManager.instance.strMulti;
         moveSpeed *= VillageLevelManager.instance.agilMulti;
         //디폴트체력값 세팅해서 스테이지 0일때만 기본체력 올리기

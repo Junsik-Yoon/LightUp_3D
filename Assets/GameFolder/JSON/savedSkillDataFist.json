@@ -1,18 +1,10 @@
 {
-    "uSkillList": [
-        {
-            "instanceID": 39568
-        },
-        {
-            "instanceID": 39566
-        }
+    "usingSkillID": [
+        13,
+        12
     ],
-    "unUSkillList": [
-        {
-            "instanceID": 39564
-        },
-        {
-            "instanceID": 39570
-        }
+    "unUsingSkillID": [
+        14,
+        11
     ]
 }

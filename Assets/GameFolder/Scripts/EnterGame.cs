@@ -9,6 +9,11 @@ public class EnterGame : MonoBehaviour//, Iinteractable
     public GameObject door2;
     public GameObject sideCam;
     
+    private void Awake()
+    {
+        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        player.isStunned=true;
+    }
     public void Interact()
     {
 
@@ -38,6 +43,10 @@ public class EnterGame : MonoBehaviour//, Iinteractable
         yield return new WaitForSeconds(7f);       
         sideCam.gameObject.SetActive(false);
         yield return new WaitForSeconds(5f); 
+        //플레이어움직일 수 있게
+        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        player.isStunned=false;
+
         VillageManager.instance.StartCoroutine(VillageManager.instance.ShowText(chiefGuard,"빛이 함께 하기를..."));
     }
     private void OnTriggerEnter(Collider other)

@@ -7,10 +7,13 @@ using UnityEngine.UI;
 
 public class ChiefScene : MonoBehaviour , Italkable
 {
+    public AudioSource audioSource;
     public Image image;
     private float imageAlpha=0.6f;
     public Camera cam;
     float yRotation;
+    public GameObject head;
+    public GameObject chief;
     InteractableConversation conver;
 
     int sceneCounter =0;
@@ -20,6 +23,14 @@ public class ChiefScene : MonoBehaviour , Italkable
         image.color = new Color(1,1,1,imageAlpha);
         StartCoroutine(SceneStart());
     }
+    private void Start()
+    {
+       //head.transform.rotation = Quaternion.LookRotation(chief.transform.forward); 
+    }
+    // private void Update()
+    // {
+    //    //Quaternion.LookRotation()
+    // }
     IEnumerator SceneStart()
     {
         if(sceneCounter ==0)
@@ -87,8 +98,16 @@ public class ChiefScene : MonoBehaviour , Italkable
     }
     IEnumerator StandAndTurn()
     {  
+        //float xRot = 80.86f;
+        audioSource.Play();
+        Animator anim = chief.GetComponent<Animator>();
+        anim.SetTrigger("LookUp");
         for(int i=0; i<40;++i)
         {
+          //  xRot-=1f;
+            //head.transform.localRotation = Quaternion.Euler(xRot,-90f,0f);
+            //Debug.Log(head.transform.localRotation);
+            //Debug.Log(head.transform.rotation);
             yield return new WaitForSeconds(0.05f);
             cam.transform.Translate(Vector3.up*0.015f);        
         }

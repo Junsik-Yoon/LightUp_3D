@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillUse: {fileID: -4269699311562099817, guid: b7e7ab629b128a64eb4afbd7d6ac7262,
     type: 3}
+  skillID: 13
   name: SmashDown
   isPassive: 0
   isTargetingSingle: 0

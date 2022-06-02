@@ -23,7 +23,8 @@ public class TutorialManager : MonoBehaviour
         StartCoroutine(Dialogue());
     }
     public void AdjustTextPos()
-    {     
+    {
+       // GameObject.Find("Player Camera");     
         Vector3 playerPos = player.transform.position;
         Vector3 textPos = new Vector3(playerPos.x-3.5f,playerPos.y,playerPos.z-3);
         Vector3 pos = Camera.main.WorldToScreenPoint(textPos);

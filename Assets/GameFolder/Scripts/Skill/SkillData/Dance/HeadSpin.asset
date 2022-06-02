@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: HeadSpin
   m_EditorClassIdentifier: 
   skillUse: {fileID: 0}
+  skillID: 22
   name: HeadSpin
   isPassive: 0
   isTargetingSingle: 0

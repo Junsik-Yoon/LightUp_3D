@@ -38,9 +38,23 @@ public class OpeningScene : MonoBehaviour
             StartCoroutine(StartGame());
             return;
         }
+        StartCoroutine(Fade());
         images[imageCounter-1].GetComponent<MeshRenderer>().enabled=false;
         images[imageCounter].GetComponent<MeshRenderer>().enabled=true;
         ++imageCounter;
+    }
+    IEnumerator Fade()
+    {
+        StartScene startScene = sceneLight.GetComponent<StartScene>();
+        startScene.killLightSwitch=true;
+        sceneLight.intensity = 0f;
+        for(int i=0; i<30; ++i)
+        {
+            yield return new WaitForSeconds(0.1f);
+            sceneLight.intensity+=0.1f;
+        }
+        startScene.killLightSwitch=false;
+
     }
 
     private void Start()
@@ -57,6 +71,7 @@ public class OpeningScene : MonoBehaviour
     IEnumerator StartGame()
     {
         sceneLight.gameObject.SetActive(false);
+        middleLight.gameObject.SetActive(true);
         for(int i=0; i<20; ++i)
         {
             middleLight.intensity+=0.1f;

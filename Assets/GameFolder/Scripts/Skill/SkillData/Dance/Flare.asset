@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Flare
   m_EditorClassIdentifier: 
   skillUse: {fileID: 0}
+  skillID: 21
   name: Flare
   isPassive: 0
   isTargetingSingle: 0

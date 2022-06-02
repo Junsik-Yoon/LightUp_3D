@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillUse: {fileID: -5136688301662425915, guid: 56724745e6574a44198059a33f6986bb,
     type: 3}
+  skillID: 14
   name: UpperCut
   isPassive: 0
   isTargetingSingle: 0

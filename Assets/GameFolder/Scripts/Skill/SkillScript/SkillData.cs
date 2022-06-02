@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class SkillData : ScriptableObject
 {
     public SkillUse skillUse;
+    public int skillID;
     new public string name = "SkillName";
     public bool isPassive;
     public bool isTargetingSingle;

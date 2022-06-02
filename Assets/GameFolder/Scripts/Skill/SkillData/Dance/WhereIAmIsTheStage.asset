@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillUse: {fileID: -3970641335404320751, guid: 7f0f8a9f83ec487488d8580e81d5ca5b,
     type: 3}
+  skillID: 23
   name: WhereIAmIsTheStage
   isPassive: 1
   isTargetingSingle: 0

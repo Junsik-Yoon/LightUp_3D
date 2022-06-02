@@ -9,8 +9,10 @@ public class SkillManager : MonoBehaviour
     [System.Serializable]
     public class ListofSkills
     {
-        public List<SkillData> uSkillList = new List<SkillData>();
-        public List<SkillData> unUSkillList = new List<SkillData>();
+        public List<int> usingSkillID =new List<int>();
+        public List<int> unUsingSkillID = new List<int>();
+        //public List<SkillData> uSkillList = new List<SkillData>();
+        //public List<SkillData> unUSkillList = new List<SkillData>();
     }
    
     public static SkillManager instance {get;private set;}
@@ -61,58 +63,85 @@ public class SkillManager : MonoBehaviour
 
     public void LoadSkillData()
     {
+        string path;
+        string jsonData;
+        ListofSkills listofSkills;
         if(player.setBattleStyle == "Fist")
         {
-            string path = Path.Combine(Application.dataPath,"GameFolder/JSON/savedSkillDataFist.json");
-            string jsonData = File.ReadAllText(path);
-            ListofSkills listofSkills  = JsonUtility.FromJson<ListofSkills>(jsonData);
-            usingSkillList = listofSkills.uSkillList;
-            unUsingSkillList = listofSkills.unUSkillList;
+            path = Path.Combine(Application.dataPath,"GameFolder/JSON/savedSkillDataFist.json");
+            jsonData = File.ReadAllText(path);
+            listofSkills  = JsonUtility.FromJson<ListofSkills>(jsonData);
         }
         else if(player.setBattleStyle == "Dance")
         {
-            string path = Path.Combine(Application.dataPath,"GameFolder/JSON/savedSkillDataDance.json");
-            string jsonData = File.ReadAllText(path);
-            ListofSkills listofSkills  = JsonUtility.FromJson<ListofSkills>(jsonData);
-            usingSkillList = listofSkills.uSkillList;
-            unUsingSkillList = listofSkills.unUSkillList;
+            path = Path.Combine(Application.dataPath,"GameFolder/JSON/savedSkillDataDance.json");
+            jsonData = File.ReadAllText(path);
+            listofSkills  = JsonUtility.FromJson<ListofSkills>(jsonData);
         }
         else if(player.setBattleStyle == "Magician")
         {
-            string path = Path.Combine(Application.dataPath,"GameFolder/JSON/savedSkillDataMagician.json");
-            string jsonData = File.ReadAllText(path);
-            ListofSkills listofSkills  = JsonUtility.FromJson<ListofSkills>(jsonData);
-            usingSkillList = listofSkills.uSkillList;
-            unUsingSkillList = listofSkills.unUSkillList;
+            path = Path.Combine(Application.dataPath,"GameFolder/JSON/savedSkillDataMagician.json");
+            jsonData = File.ReadAllText(path);
+            listofSkills  = JsonUtility.FromJson<ListofSkills>(jsonData);
         }
+        else
+        {
+            listofSkills = null;
+        }
+        
+            List<SkillData> u_skills = new List<SkillData>(); //임시저장
+            List<SkillData> un_u_skills = new List<SkillData>(); //임시저장
+            for(int i=0; i<listofSkills.usingSkillID.Count;++i)
+            {
+                for(int j=0;j<wholeSkillList.Count;++j)
+                {
+                    if(wholeSkillList[j].skillID == listofSkills.usingSkillID[i])
+                    {
+                        u_skills.Add(wholeSkillList[j]);
+                    }
+                }
+            }            
+            for(int i=0; i<listofSkills.unUsingSkillID.Count;++i)
+            {
+                for(int j=0;j<wholeSkillList.Count;++j)
+                {
+                    if(wholeSkillList[j].skillID == listofSkills.unUsingSkillID[i])
+                    {
+                        un_u_skills.Add(wholeSkillList[j]);
+                    }
+                }
+            }
+            
+            usingSkillList = u_skills;
+            unUsingSkillList = un_u_skills;
 
     }
     public void SaveSkillData()
     {
+        ListofSkills listofSkills = new ListofSkills();
+            for(int i=0; i<usingSkillList.Count;++i)
+            {
+                listofSkills.usingSkillID.Add(usingSkillList[i].skillID);
+            }
+            for(int i=0; i<unUsingSkillList.Count;++i)
+            {
+                listofSkills.unUsingSkillID.Add(unUsingSkillList[i].skillID);
+            }
+            string jsonData = JsonUtility.ToJson(listofSkills,true);
+
+
         if(player.setBattleStyle == "Fist")
         {
-            ListofSkills listofSkills = new ListofSkills();
-            listofSkills.uSkillList = usingSkillList;
-            listofSkills.unUSkillList = unUsingSkillList;
-            string jsonData = JsonUtility.ToJson(listofSkills,true);
             string path = Path.Combine(Application.dataPath,"GameFolder/JSON/savedSkillDataFist.json");
             File.WriteAllText(path,jsonData);
         }
         else if(player.setBattleStyle == "Dance")
         {
-            ListofSkills listofSkills = new ListofSkills();
-            listofSkills.uSkillList = usingSkillList;
-            listofSkills.unUSkillList = unUsingSkillList;
-            string jsonData = JsonUtility.ToJson(listofSkills,true);
             string path = Path.Combine(Application.dataPath,"GameFolder/JSON/savedSkillDataDance.json");
             File.WriteAllText(path,jsonData);
         }
         else if(player.setBattleStyle == "Magician")
         {
-            ListofSkills listofSkills = new ListofSkills();
-            listofSkills.uSkillList = usingSkillList;
-            listofSkills.unUSkillList = unUsingSkillList;
-            string jsonData = JsonUtility.ToJson(listofSkills,true);
             string path = Path.Combine(Application.dataPath,"GameFolder/JSON/savedSkillDataMagician.json");
             File.WriteAllText(path,jsonData);           
         }

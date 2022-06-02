@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BoxingStep
   m_EditorClassIdentifier: 
   skillUse: {fileID: 273542050207870709, guid: 22e516b5901c22d4ca3dc756f7d881b4, type: 3}
+  skillID: 11
   name: BoxingStep
   isPassive: 1
   isTargetingSingle: 0
