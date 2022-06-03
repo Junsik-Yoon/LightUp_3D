@@ -65,7 +65,7 @@ public class StartScene : MonoBehaviour
     }
     public void OnMouseEnter(Image image)
     {
-        image.color = new Color(0.5f,0.5f,0.5f,0.5f);
+        image.color = new Color(0.5f,0.5f,0.5f,0.1f);
     }
     public void OnMouseExit(Image image)
     {

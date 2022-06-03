@@ -349,7 +349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -89, y: 28}
+  m_AnchoredPosition: {x: -103, y: 28}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &425758546
@@ -873,6 +873,7 @@ MonoBehaviour:
   - {fileID: 1890122536}
   - {fileID: 645629771}
   scenePointLight: {fileID: 1012164631}
+  killLightSwitch: 0
   lightOn: 1
 --- !u!82 &1012164634
 AudioSource:
@@ -1041,7 +1042,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -69, y: -7}
+  m_AnchoredPosition: {x: -82, y: -7}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1890122534

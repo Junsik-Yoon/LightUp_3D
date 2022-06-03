@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public enum eEnemyState
 {
     IDLE,
@@ -31,6 +30,7 @@ public class Enemy : MonoBehaviour , IDamagable
    {
        if(gameObject.tag!="Boss")
        {
+            BattleStageManager.instance.cashingDeadEnemyPos = transform.position;
             BattleStageManager.instance.enemyCount -=1;
             BattleStageManager.enemyKilled+=1;
        }

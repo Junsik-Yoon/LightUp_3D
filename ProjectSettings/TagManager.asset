@@ -9,6 +9,7 @@ TagManager:
   - Boss
   - NPC
   - Particle
+  - Enemy
   layers:
   - Default
   - TransparentFX

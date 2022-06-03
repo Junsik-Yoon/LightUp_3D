@@ -8,7 +8,7 @@ public class PlayerLight : MonoBehaviour
 {
     public event UnityAction OnChangeLight;
     public Light playerLight;
-
+    bool isDead=false;
     private float _lightPower;
     public float lightPower
     {
@@ -19,7 +19,11 @@ public class PlayerLight : MonoBehaviour
         set
         {    
             _lightPower = value;
-            //if(_lightPower<=1.1f) -> dead ->reroll
+            if(_lightPower<=1.1f&&!isDead)
+            {
+                isDead=true;
+                BattleStageManager.instance.PlayerDeadAndReRoll();
+            }
             OnChangeLight?.Invoke();
         }
     }

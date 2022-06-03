@@ -30,7 +30,7 @@ public class EnemySkeletonMelee : Enemy
         distance = (playerPos-enemyPos).magnitude;
         if(eState != eEnemyState.TRACE) return;
         anim.SetTrigger("onTrace");
-        if(distance <=2.5f)
+        if(distance <=2f)
         {           
            eState = eEnemyState.ATTACK;
         }
@@ -44,7 +44,7 @@ public class EnemySkeletonMelee : Enemy
     {  
         if(eState != eEnemyState.ATTACK) return;
         anim.SetTrigger("onAttack");
-        if(distance >= 2.5f)
+        if(distance >= 2f)
         {
             eState = eEnemyState.TRACE;
         }

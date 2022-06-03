@@ -60,6 +60,7 @@ public class TutorialManager : MonoBehaviour
         GameObject obj = Instantiate(portal,new Vector3(0,0.1f,0),Quaternion.identity);
         obj.GetComponent<Portal>().SetDestination("MainQuestScene");
     }
+    
     IEnumerator RestartScene()
     {
         AdjustTextPos();

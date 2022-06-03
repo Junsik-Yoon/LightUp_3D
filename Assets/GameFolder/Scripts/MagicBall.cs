@@ -9,8 +9,11 @@ public class MagicBall : MonoBehaviour
     public Vector3 dir;
     float moveSpeed = 10f;
 
+    AudioSource audioSource;
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(Resources.Load<AudioClip>("Sound/wizardMissileSound"));//,volumeScale:0.1f);
         Invoke("DestroySelf",5f);
     }
     void Update()

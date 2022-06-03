@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33626e8ad04f074c8ce9104413b28b7, type: 3}
+  m_Name: HolySword
+  m_EditorClassIdentifier: 
+  name: "\uC131\uC2A4\uB7EC\uC6B4 \uAC80"
+  icon: {fileID: 21300000, guid: 3640046a7450e5540addada156b5115a, type: 3}
+  prefab: {fileID: 3866583881286213791, guid: f97dd506b24f5664db3410fb2e51c605, type: 3}
+  description: "\uC5B4\uB460\uC744 \uCC98\uCE58\uD558\uBA74 \uC131\uC2A4\uB7EC\uC6B4
+    \uD798\uC774 \uC8FC\uBCC0\uC758 \uC5B4\uB460\uC744 \uAD34\uB86D\uD799\uB2C8\uB2E4"
+  itemPrice: 50
+  equipable: {fileID: 8491590420028217756, guid: f97dd506b24f5664db3410fb2e51c605,
+    type: 3}

@@ -15,7 +15,7 @@ public class BloodFilledHelmet : InteractableItem
         Player player = (GameObject.FindGameObjectWithTag("Player"))?.GetComponent<Player>();
         player.defaultDamage = player.damage;
         player.damage *=1.3f;
-        player.playerLight.lightRunoutSpeed = 1.5f;
+        player.playerLight.lightRunoutSpeed +=0.5f;
         
         Transform headPos = GameObject.Find("HeadParticle")?.transform;
         GameObject obj = Instantiate(Resources.Load<GameObject>("prefabs/EyeParticle"), headPos);
@@ -25,7 +25,7 @@ public class BloodFilledHelmet : InteractableItem
     {
         Player player = (GameObject.FindGameObjectWithTag("Player"))?.GetComponent<Player>();
         player.damage = player.defaultDamage;
-        player.playerLight.lightRunoutSpeed = 1f;
+        player.playerLight.lightRunoutSpeed -=0.5f;
 
         GameObject obj = BattleStageManager.instance.bloodFilledParticle;
         Destroy(obj);

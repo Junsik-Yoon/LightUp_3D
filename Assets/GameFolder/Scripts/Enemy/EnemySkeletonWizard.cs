@@ -15,8 +15,8 @@ public class EnemySkeletonWizard : Enemy
     public float hitRadius = 1f;
     private void Awake()
     {
-        hp = 20f;
-        damage = 5f;
+        hp = 15f;
+        damage = 3f;
         player = GameObject.FindGameObjectWithTag("Player");
         eState = eEnemyState.IDLE;
         anim = GetComponent<Animator>();

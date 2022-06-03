@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.IO;
+using UnityEngine.UI;
 public class BattleStageManager : MonoBehaviour
 {
+    public GameObject textUI;
     public static int dungeonStatus = 0; //보스클리어하거나 죽으면 다시 0으로 돌리기
     public static int enemyKilled = 0;
     public float playTime;
+    public Vector3 cashingDeadEnemyPos;
 
     public GameObject bloodFilledParticle;//bloodfilled임시저장
     public event UnityAction OnEnemyDead;
@@ -45,26 +48,53 @@ public class BattleStageManager : MonoBehaviour
 
     public void PlayerDeadAndReRoll()
     {
-        //모습 아바타 리롤하기
-        int randomBattleStyle = Random.Range(0,2);
-        switch(randomBattleStyle)
-        {
-            case 0://fist style
-            {
-                player.setBattleStyle = "Fist";
-            }break;
-            case 1://magician style
-            {
-                player.setBattleStyle = "Dance";
-            }break;
-            case 2://dance style
-            {
-                player.setBattleStyle = "Magician";
-            }break;
-            //클래스 추가될 시 추가
-        }
-        SetNeededPlayerData(player);
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        player.anim.SetTrigger("Dead");
+        player.characterController.enabled=false;
+        player.isStunned = true;
+        StartCoroutine(RestartPlayer());
+        // //모습 아바타 리롤하기
+        // int randomBattleStyle = Random.Range(0,2);
+        // switch(randomBattleStyle)
+        // {
+        //     case 0://fist style
+        //     {
+        //         player.setBattleStyle = "Fist";
+        //     }break;
+        //     case 1://magician style
+        //     {
+        //         player.setBattleStyle = "Dance";
+        //     }break;
+        //     case 2://dance style
+        //     {
+        //         player.setBattleStyle = "Magician";
+        //     }break;
+        //     //클래스 추가될 시 추가
+        // }
+        // SetNeededPlayerData(player);
     }
+
+
+    IEnumerator RestartPlayer()
+    {
+        GameObject txt = textUI.transform.GetChild(0).gameObject;
+        AdjustTextPos();
+        txt.GetComponent<Text>().text = "으아아악!!";
+        yield return new WaitForSeconds(3f);
+        txt.GetComponent<Text>().text = "내게 빛을...";
+        yield return new WaitForSeconds(2f);
+        LoadingHelper.LoadScene("VillageScene"); 
+    }
+    public void AdjustTextPos()
+    {
+       // GameObject.Find("Player Camera");     
+        Vector3 playerPos = player.transform.position;
+        Vector3 textPos = new Vector3(playerPos.x-3.5f,playerPos.y,playerPos.z-3);
+        Vector3 pos = Camera.main.WorldToScreenPoint(textPos);
+        textUI.transform.position = pos;
+        textUI.SetActive(true); 
+    }
+
     [System.Serializable]
     public class SavePlayerDataAsClass
     {

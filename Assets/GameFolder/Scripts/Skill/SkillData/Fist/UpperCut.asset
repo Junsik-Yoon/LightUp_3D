@@ -29,6 +29,9 @@ MonoBehaviour:
     type: 3}
   prefEffectOnGround: {fileID: 0}
   prefEffectOnHand: {fileID: 0}
+  soundFromTheTop: {fileID: 8300000, guid: 9ad06e68920d7034a83c63cf0660d949, type: 3}
+  soundHit: {fileID: 8300000, guid: 7187110209ee85645889a4be4071d974, type: 3}
+  soundWithoutHit: {fileID: 0}
   skillDescription: "\uC801\uC5D0\uAC8C \uCE58\uBA85\uC801\uC778 \uC5B4\uD37C\uCEF7\uC744
     \uAC00\uD569\uB2C8\uB2E4"
   animString: UpperCut

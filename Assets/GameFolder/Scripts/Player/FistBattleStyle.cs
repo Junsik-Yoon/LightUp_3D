@@ -16,11 +16,6 @@ public class FistBattleStyle : BattleStyle
     {
         if(player.comboCounter<4)
         {
-            
-            AudioClip punchSound = Resources.Load<AudioClip>("Sound/punchSoundSmall");
-            player.audioSource.clip = punchSound;
-            player.audioSource.Play();
-            
             colls = Physics.OverlapSphere(player.hitCollider.position,player.hitRadius,LayerMask.GetMask("Enemy"));
             ++player.comboCounter;
             player.anim.SetTrigger("onAttack");
@@ -34,6 +29,10 @@ public class FistBattleStyle : BattleStyle
         if(curSkillA.isPassive)return;
         if(!player.isCoolTimeA)
         {
+            if(curSkillA.soundFromTheTop!=null)
+            {
+                player.audioSource.PlayOneShot(curSkillA.soundFromTheTop);
+            }
             //colls = Physics.OverlapSphere(player.hitCollider.position,player.hitRadius,LayerMask.GetMask("Enemy"));
             player.anim.SetTrigger(curSkillA.animString);
             skillIndex=1;
@@ -51,6 +50,10 @@ public class FistBattleStyle : BattleStyle
         if(curSkillB.isPassive)return;
         if(!player.isCoolTimeB)
         {
+            if(curSkillB.soundFromTheTop!=null)
+            {
+                player.audioSource.PlayOneShot(curSkillB.soundFromTheTop);
+            }
             player.anim.SetTrigger(curSkillB.animString);
             skillIndex=2;
             player.isCoolTimeB=true;
@@ -71,6 +74,10 @@ public class FistBattleStyle : BattleStyle
             player.StartCoroutine(player.CoolTimeResetDodge(0.5f));  
             player.isInvincible = true; 
             player.isOnSkill=true;
+
+                AudioClip dodgeSound = Resources.Load<AudioClip>("Sound/fistDodgeSound");
+            player.audioSource.clip = dodgeSound;
+            player.audioSource.PlayOneShot(dodgeSound);
         }
     }
     public override void OnHit()
@@ -82,6 +89,9 @@ public class FistBattleStyle : BattleStyle
         else if (skillIndex == 2) {damageMultiplier = curSkillB.damageMultiplier; knockBackRange =curSkillB.knockBackRange;}
         else {damageMultiplier = 0f; knockBackRange = 0f;}
         colls = Physics.OverlapSphere(player.hitCollider.position,player.hitRadius,LayerMask.GetMask("Enemy"));
+        
+
+        
         if(colls.Length>0)
         {
             if(skillIndex ==0)
@@ -93,7 +103,13 @@ public class FistBattleStyle : BattleStyle
                    // Vector3 effectPos = new Vector3(player.hitCollider.transform.position.x,player.hitCollider.transform.position.y-1.4f,player.hitCollider.transform.position.z);
                     GameObject obj = GameObject.Instantiate(player.hitImpactEffect,player.hitCollider.transform.position,Quaternion.identity);
                     GameObject.Destroy(obj,0.5f);
-//                    Debug.Log(player.damage * damageMultiplier);
+
+
+                    //맞는 사운드
+                        AudioClip punchHitSound = Resources.Load<AudioClip>("Sound/punchHitSound");
+                    player.audioSource.clip = punchHitSound;
+                    player.audioSource.PlayOneShot(punchHitSound);
+
                 } 
             }
             else if(skillIndex ==1)
@@ -130,6 +146,13 @@ public class FistBattleStyle : BattleStyle
                         } 
                     }
                 }
+
+                //사운드
+                if(curSkillA.soundHit!=null)
+                {
+                    player.audioSource.clip = curSkillA.soundHit;
+                    player.audioSource.PlayOneShot(curSkillA.soundHit);
+                }
             }
             else if(skillIndex ==2)
             {
@@ -163,18 +186,39 @@ public class FistBattleStyle : BattleStyle
                             }
                         } 
                     }
-                }    
+                }
+
+                //사운드
+                if(curSkillB.soundHit!=null)
+                {
+                    player.audioSource.clip = curSkillB.soundHit;
+                    player.audioSource.PlayOneShot(curSkillB.soundHit);
+                }
             }
         } 
         //else//스킬이펙트용
         {
-            if(skillIndex ==1)
+            if(skillIndex == 0)
+            {
+                //맞았든 안맞았든 사운드
+                AudioClip punchSound = Resources.Load<AudioClip>("Sound/punchSoundSmall");
+                    player.audioSource.clip = punchSound;
+                    player.audioSource.PlayOneShot(punchSound);
+            }
+            else if(skillIndex ==1)
             {
                 if(curSkillA.prefEffectOnGround!=null)
                 {
                     Vector3 effectPos = new Vector3(player.hitCollider.transform.position.x,player.hitCollider.transform.position.y-1.4f,player.hitCollider.transform.position.z);
                     GameObject obj = GameObject.Instantiate(curSkillA.prefEffectOnGround,effectPos,Quaternion.identity);
                     GameObject.Destroy(obj,1.5f);
+                }
+
+                //사운드
+                if(curSkillA.soundWithoutHit!=null)
+                {
+                    player.audioSource.clip = curSkillA.soundWithoutHit;
+                    player.audioSource.PlayOneShot(curSkillA.soundWithoutHit);
                 }
 
             }
@@ -186,7 +230,15 @@ public class FistBattleStyle : BattleStyle
                     GameObject obj = GameObject.Instantiate(curSkillB.prefEffectOnGround,effectPos,Quaternion.identity);
                     GameObject.Destroy(obj,1.5f);
                 }
+
+                //사운드
+                if(curSkillB.soundWithoutHit!=null)
+                {
+                    player.audioSource.clip = curSkillB.soundWithoutHit;
+                    player.audioSource.PlayOneShot(curSkillB.soundWithoutHit);
+                }
             }
+
 
         }     
     } 

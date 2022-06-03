@@ -21,6 +21,10 @@ public abstract class SkillData : ScriptableObject
     public GameObject prefEffectHit = null;
     public GameObject prefEffectOnGround = null;
     public GameObject prefEffectOnHand =null;
+
+    public AudioClip soundFromTheTop = null;
+    public AudioClip soundHit = null;
+    public AudioClip soundWithoutHit = null;
     [TextArea]
     public string skillDescription = "";
     public string animString = "";

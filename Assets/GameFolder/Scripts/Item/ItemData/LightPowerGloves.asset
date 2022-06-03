@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33626e8ad04f074c8ce9104413b28b7, type: 3}
+  m_Name: LightPowerGloves
+  m_EditorClassIdentifier: 
+  name: "\uBE5B\uC758\uD798\uC758\uC7A5\uAC11"
+  icon: {fileID: 21300000, guid: ede8aeb7bdf2ef846b29acd20e900aa1, type: 3}
+  prefab: {fileID: 3866583881286213791, guid: b80a6136a9bd78846b0aa828277c0f8b, type: 3}
+  description: "\uBE5B\uC758 \uD798\uC744 \uC8FC\uC785\uD558\uC5EC \uAC15\uD55C \uD798\uC744
+    \uD130\uD2B8\uB9BD\uB2C8\uB2E4. \uC0AC\uC6A9\uC5D0 \uC720\uC758\uD558\uC5EC\uC57C
+    \uD569\uB2C8\uB2E4"
+  itemPrice: 50
+  equipable: {fileID: 4172035155319724519, guid: b80a6136a9bd78846b0aa828277c0f8b,
+    type: 3}

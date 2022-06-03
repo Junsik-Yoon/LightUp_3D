@@ -29,6 +29,8 @@ MonoBehaviour:
   prefEffectOnGround: {fileID: 1403588424789090173, guid: fe7a5d52f9c31e24dbca5deaffa72b88,
     type: 3}
   prefEffectOnHand: {fileID: 0}
+  soundHit: {fileID: 0}
+  soundWithoutHit: {fileID: 8300000, guid: a3d289c34b2d4eb4ca794f7372a987b8, type: 3}
   skillDescription: "\uB545\uC744 \uB0B4\uB824\uCCD0 \uC8FC\uBCC0\uC758 \uC801\uC5D0\uAC8C
     \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4\n"
   animString: SmashDown
